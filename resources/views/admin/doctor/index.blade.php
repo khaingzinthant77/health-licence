@@ -1,25 +1,25 @@
 @extends('adminlte::page')
 
-@section('title', 'Clinic')
+@section('title', 'Doctors')
 
 @section('content_header')
-    <h5 style="color: blue;">ဆေးခန်းများ</h5>
+    <h5 style="color: blue;">ဆရာဝန်များ</h5>
 @stop
 @section('content')
     <?php
         $name = isset($_GET['name'])?$_GET['name']:'';   
     ?>
-        <form action="{{ route('clinic.index') }}" method="get" accept-charset="utf-8" class="form-horizontal">
+        <form action="{{ route('doctor.index') }}" method="get" accept-charset="utf-8" class="form-horizontal">
             <div class="row">
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Name">
+                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search Keyword...">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-success unicode" href="{{route('clinic.create')}}"><i class="fa fa-plus-square" /></i> Add New!</a>
+                    <a class="btn btn-success unicode" href="{{route('doctor.create')}}"><i class="fa fa-plus-square" /></i> Add New!</a>
                 </div>
             </div>
         </form>
@@ -31,25 +31,23 @@
                 <thead>
                 <tr>
                     <th>စဉ်</th>
+                     <th>ဆရာဝန်အမည်</th>
+                     <th>ဘွဲ့အမည်</th> 
                      <th>ဆေးခန်းအမည်</th>
-                     <th>ဆေးခန်း တည်နေရာ</th> 
-                     <th>ပိုင်ရှင်အမည်</th>
                     <th>ဖုန်းနံပါတ်</th>
                     <!-- <th>ဓါတ်ပုံ</th> -->
                     <!-- <th class="unicode">Action</th> -->
                 </tr>
                 </thead>
-            @if(count($clinics)>0)
-            @foreach($clinics as $clinic)
-                <tr class="table-tr" data-url="{{ route('clinic.show',$clinic->id) }}">
-                    <td class="unicode">{{++$i}}</td>
-                    <td class="unicode">{{$clinic->clinic_name}}</td>
-                    <td>{{$clinic->clinic_address}}</td>
-                    <td class="unicode">{{$clinic->owner}}</td>
-                   <td>{{$clinic->phone}}</td>
-                   <!-- <td>
-                       <img src="{{ asset($clinic->path.$clinic->owner_photo) }}" alt="photo" width="100px">
-                   </td> -->
+            @if(count($doctors)>0)
+            @foreach($doctors as $doctor)
+                <tr class="table-tr" data-url="{{ route('doctor.show',$doctor->id) }}">
+                    <td>1</td>
+                    <td>{{$doctor->doc_name}}</td>
+                    <td>{{$doctor->doc_degree}}</td>
+                    <td>{{$doctor->viewClinic->clinic_name}}</td>
+                   <td>{{$doctor->doc_phone}}</td>
+                   
                 </tr>
            
             @endforeach
@@ -63,7 +61,7 @@
                 <p>Total - {{$count}}</p>
           </div>
        </div>
-        {{ $clinics->appends(request()->input())->links()}}
+        {{ $doctors->appends(request()->input())->links()}}
     </div>
 @stop 
 

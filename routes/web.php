@@ -31,6 +31,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 	Route::resource('clinic','App\Http\Controllers\ClinicController');
+	Route::resource('doctor','App\Http\Controllers\DoctorController');
+	Route::resource('history','App\Http\Controllers\ClinicHistoryController');
+
 	Route::resource('township','App\Http\Controllers\TownshipController');
 	Route::resource('licence','App\Http\Controllers\LicenceTypeController');
 	Route::resource('sublicence','App\Http\Controllers\SubLicenceTypeController');

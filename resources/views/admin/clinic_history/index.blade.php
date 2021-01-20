@@ -18,9 +18,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                     <a class="btn btn-success unicode" href="{{route('clinic.create')}}"><i class="fa fa-plus-square" /></i> Add New!</a>
-                </div>
+                </div> -->
             </div>
         </form>
         <br>
@@ -32,30 +32,33 @@
                 <tr>
                     <th>စဉ်</th>
                      <th>ဆေးခန်းအမည်</th>
-                     <th>ဆေးခန်း တည်နေရာ</th> 
-                     <th>ပိုင်ရှင်အမည်</th>
-                    <th>ဖုန်းနံပါတ်</th>
+                     <th>လိုင်စင်အမည်</th> 
+                     <th>လိုင်စင်ခွဲ</th>
+                     <th>လိုင်စင်ခွဲ (အတိုကောက်)</th>
+                    <th>လိုင်စင်နံပါတ်</th>
+                    <th>မြို့နယ်</th>
+                    <th>သက်တမ်းကာလ</th>
                     <!-- <th>ဓါတ်ပုံ</th> -->
                     <!-- <th class="unicode">Action</th> -->
                 </tr>
                 </thead>
-            @if(count($clinics)>0)
-            @foreach($clinics as $clinic)
-                <tr class="table-tr" data-url="{{ route('clinic.show',$clinic->id) }}">
-                    <td class="unicode">{{++$i}}</td>
-                    <td class="unicode">{{$clinic->clinic_name}}</td>
-                    <td>{{$clinic->clinic_address}}</td>
-                    <td class="unicode">{{$clinic->owner}}</td>
-                   <td>{{$clinic->phone}}</td>
-                   <!-- <td>
-                       <img src="{{ asset($clinic->path.$clinic->owner_photo) }}" alt="photo" width="100px">
-                   </td> -->
+            @if(count($histories)>0)
+            @foreach($histories as $history)
+                <tr class="table-tr" data-url="">
+                    <td>{{++$i}}</td>
+                    <td>{{$history->viewClinic->clinic_name}}</td>
+                    <td>{{$history->viewLicenceType->lic_name}}</td>
+                    <td>{{$history->viewSubLicence->sub_lic_name}}</td>
+                    <td>{{$history->viewSubLicence->sub_lic_short}}</td>
+                    <td>{{$history->lic_no}}</td>
+                   <td>{{$history->viewTownship->tsh_name_mm}}</td>
+                    <td>{{$history->duration}}</td>
                 </tr>
            
             @endforeach
              @else
             <tr align="center">
-                  <td colspan="5">No Data!</td>
+                  <td colspan="7">No Data!</td>
             </tr>
             @endif
             </table>
@@ -63,7 +66,7 @@
                 <p>Total - {{$count}}</p>
           </div>
        </div>
-        {{ $clinics->appends(request()->input())->links()}}
+        {{ $histories->appends(request()->input())->links()}}
     </div>
 @stop 
 

@@ -12,9 +12,18 @@ class ClinicHistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $histories = new ClinicHistory();
+
+        if ($request->name != '') {
+            $histories = $histories->where('clinic_name','like','%'.$request->name.'%')->orwhere('owner','like','%'.$request->name.'%');
+        }
+
+        $count = $histories->count();
+        $histories = $histories->orderBy('created_at','asc')->paginate(10);
+
+        return view('admin.clinic_history.index',compact('histories','count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**

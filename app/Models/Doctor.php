@@ -10,4 +10,9 @@ class Doctor extends Model
     use HasFactory;
     protected $table = "doctors";
     protected $fillable = ['clinic_id','doc_name','doc_degree','doc_phone','doc_address'];
+
+    public function viewClinic()
+    {
+    	return $this->hasOne('App\Models\Clinic','id','clinic_id');
+    }
 }

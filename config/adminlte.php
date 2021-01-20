@@ -233,12 +233,12 @@ return [
         // ['header' => 'account_settings'],
         [
             'text' => 'Doctors',
-            'url'  => 'admin/settings',
+            'url'  => 'doctor',
             'icon' => 'fas fa-user-md',
         ],
         [
             'text' => 'Clinic History',
-            'url'  => 'admin/settings',
+            'url'  => 'history',
             'icon' => 'fas fa-history',
         ],
         [
