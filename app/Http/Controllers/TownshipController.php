@@ -12,9 +12,16 @@ class TownshipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $townships = new Township();
+        if ($request->name != '') {
+            $townships = $townships->Where('tsh_name_en','like','%'.$request->name.'%');
+        }
+        $count = $townships->get()->count();
+    
+        $townships = $townships->orderBy('created_at','desc')->paginate(10);
+        return view('admin.township.index',compact('townships','count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -24,7 +31,7 @@ class TownshipController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.township.create');
     }
 
     /**
@@ -35,7 +42,21 @@ class TownshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $rules = [
+            'tsh_name_en'=>'required',
+            'tsh_name_mm'=>'required',
+            'tsh_short_code'=>'required',
+        ];
+
+         $this->validate($request,$rules);
+         $township=Township::create([
+            'tsh_name_en'=>$request->tsh_name_en,
+            'tsh_name_mm'=>$request->tsh_name_mm,
+            'tsh_short_code'=>$request->tsh_short_code,
+        ]
+        );
+
+          return redirect()->route('township.index')->with('success','Township created successfully');;
     }
 
     /**
@@ -55,9 +76,10 @@ class TownshipController extends Controller
      * @param  \App\Models\Township  $township
      * @return \Illuminate\Http\Response
      */
-    public function edit(Township $township)
+    public function edit($id)
     {
-        //
+        $townships = Township::find($id);
+        return view('admin.township.edit',compact('townships'));
     }
 
     /**
@@ -67,9 +89,17 @@ class TownshipController extends Controller
      * @param  \App\Models\Township  $township
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Township $township)
+    public function update(Request $request, $id)
     {
-        //
+        $townships = Township::find($id);
+         $townships=$townships->update([
+            'tsh_name_en'=>$request->tsh_name_en,
+            'tsh_name_mm'=>$request->tsh_name_mm,
+            'tsh_short_code'=>$request->tsh_short_code,
+        ]
+        );
+
+          return redirect()->route('township.index')->with('success','Township updated successfully');;
     }
 
     /**
@@ -78,8 +108,10 @@ class TownshipController extends Controller
      * @param  \App\Models\Township  $township
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Township $township)
+    public function destroy($id)
     {
-        //
+        $townships = Township::find($id);
+        $townships->delete();
+        return redirect()->route('township.index')->with('success','Township deleted successfully');;
     }
 }
