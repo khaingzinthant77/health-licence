@@ -42,6 +42,13 @@ class TownshipController extends Controller
      */
     public function store(Request $request)
     {
+         $rules = [
+            'tsh_name_en'=>'required',
+            'tsh_name_mm'=>'required',
+            'tsh_short_code'=>'required',
+        ];
+
+         $this->validate($request,$rules);
          $township=Township::create([
             'tsh_name_en'=>$request->tsh_name_en,
             'tsh_name_mm'=>$request->tsh_name_mm,
