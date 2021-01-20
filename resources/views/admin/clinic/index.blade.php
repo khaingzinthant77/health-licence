@@ -3,7 +3,7 @@
 @section('title', 'Clinic')
 
 @section('content_header')
-    <h5 style="color: blue;">Clinics</h5>
+    <h5 style="color: blue;">ဆေးခန်းများ</h5>
 @stop
 @section('content')
     <?php
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-success unicode" href=""><i class="fas fa-user-cog" /></i> Add New!</a>
+                    <a class="btn btn-success unicode" href="{{route('clinic.create')}}"><i class="fa fa-plus-square" /></i> Add New!</a>
                 </div>
             </div>
         </form>
@@ -32,27 +32,38 @@
                 <tr>
                     <th>စဉ်</th>
                      <th>ဆေးခန်းအမည်</th>
+                     <th>ဆေးခန်း တည်နေရာ</th> 
                      <th>ပိုင်ရှင်အမည်</th>
                     <th>ဖုန်းနံပါတ်</th>
-                    <th>ဓါတ်ပုံ</th>
+                    <!-- <th>ဓါတ်ပုံ</th> -->
                     <!-- <th class="unicode">Action</th> -->
                 </tr>
                 </thead>
-            
-                <tr class="table-tr" data-url="">
+            @if(count($clinics)>0)
+            @foreach($clinics as $clinic)
+                <tr class="table-tr" data-url="{{ route('clinic.show',$clinic->id) }}">
                     <td class="unicode">1</td>
-                    <td class="unicode">အထွေထွေရောဂါကုဆေးခန်း</td>
-                    <td class="unicode">ဦးလှ</td>
-                   <td>0997867878</td>
-                   <td></td>
+                    <td class="unicode">{{$clinic->clinic_name}}</td>
+                    <td>{{$clinic->clinic_address}}</td>
+                    <td class="unicode">{{$clinic->owner}}</td>
+                   <td>{{$clinic->phone}}</td>
+                   <!-- <td>
+                       <img src="{{ asset($clinic->path.$clinic->owner_photo) }}" alt="photo" width="100px">
+                   </td> -->
                 </tr>
            
+            @endforeach
+             @else
+            <tr align="center">
+                  <td colspan="5">No Data!</td>
+            </tr>
+            @endif
             </table>
             <div align="center">
-                <p>Total - 1</p>
+                <p>Total - {{$count}}</p>
           </div>
        </div>
-        
+        {{ $clinics->appends(request()->input())->links()}}
     </div>
 @stop 
 
