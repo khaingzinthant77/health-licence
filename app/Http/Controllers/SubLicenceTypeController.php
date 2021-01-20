@@ -42,6 +42,12 @@ class SubLicenceTypeController extends Controller
      */
     public function store(Request $request)
     {
+         $rules = [
+            'sub_lic_name'=>'required',
+            'sub_lic_short'=>'required',
+        ];
+
+         $this->validate($request,$rules);
          $sublicence=SubLicenceType::create([
             'sub_lic_name'=>$request->sub_lic_name,
             'sub_lic_short'=>$request->sub_lic_short,

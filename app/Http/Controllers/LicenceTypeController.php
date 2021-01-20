@@ -43,6 +43,13 @@ class LicenceTypeController extends Controller
      */
     public function store(Request $request)
     {
+         $rules = [
+            'lic_name'=>'required',
+            'short_name'=>'required',
+            'rule_no'=>'required',
+        ];
+
+         $this->validate($request,$rules);
         $licence=LicenceType::create([
             'lic_name'=>$request->lic_name,
             'short_name'=>$request->short_name,
