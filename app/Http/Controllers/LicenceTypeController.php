@@ -12,9 +12,16 @@ class LicenceTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+         $licences = new LicenceType();
+        if ($request->name != '') {
+            $licences = $licences->Where('lic_name','like','%'.$request->name.'%');
+        }
+        $count = $licences->get()->count();
+    
+        $licences = $licences->orderBy('created_at','desc')->paginate(10);
+        return view('admin.licence.index',compact('licences','count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -22,9 +29,10 @@ class LicenceTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
+        return view('admin.licence.create');
     }
 
     /**
@@ -35,7 +43,14 @@ class LicenceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $licence=LicenceType::create([
+            'lic_name'=>$request->lic_name,
+            'short_name'=>$request->short_name,
+            'rule_no'=>$request->rule_no,
+        ]
+        );
+
+          return redirect()->route('licence.index')->with('success','LicenceType created successfully');;
     }
 
     /**
@@ -55,9 +70,10 @@ class LicenceTypeController extends Controller
      * @param  \App\Models\LicenceType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function edit(LicenceType $licenceType)
+    public function edit($id)
     {
-        //
+         $licences = LicenceType::find($id);
+        return view('admin.licence.edit',compact('licences'));
     }
 
     /**
@@ -67,9 +83,17 @@ class LicenceTypeController extends Controller
      * @param  \App\Models\LicenceType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LicenceType $licenceType)
+    public function update(Request $request, $id)
     {
-        //
+         $licences = LicenceType::find($id);
+         $licences=$licences->update([
+            'lic_name'=>$request->lic_name,
+            'short_name'=>$request->short_name,
+            'rule_no'=>$request->rule_no,
+        ]
+        );
+
+          return redirect()->route('licence.index')->with('success','LicenceType updated successfully');;
     }
 
     /**
@@ -78,8 +102,10 @@ class LicenceTypeController extends Controller
      * @param  \App\Models\LicenceType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LicenceType $licenceType)
+    public function destroy($id)
     {
-        //
+        $licences = LicenceType::find($id);
+        $licences->delete();
+        return redirect()->route('licence.index')->with('success','LicenceType deleted successfully');;
     }
 }

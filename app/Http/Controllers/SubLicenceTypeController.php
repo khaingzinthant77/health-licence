@@ -12,9 +12,16 @@ class SubLicenceTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $sublicences = new SubLicenceType();
+        if ($request->name != '') {
+            $sublicences = $sublicences->Where('sub_lic_name','like','%'.$request->name.'%');
+        }
+        $count = $sublicences->get()->count();
+    
+        $sublicences = $sublicences->orderBy('created_at','desc')->paginate(10);
+        return view('admin.sublicence.index',compact('sublicences','count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -24,7 +31,7 @@ class SubLicenceTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.sublicence.create');
     }
 
     /**
@@ -35,7 +42,13 @@ class SubLicenceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $sublicence=SubLicenceType::create([
+            'sub_lic_name'=>$request->sub_lic_name,
+            'sub_lic_short'=>$request->sub_lic_short,
+        ]
+        );
+
+          return redirect()->route('sublicence.index')->with('success','SubLicenceType created successfully');;
     }
 
     /**
@@ -55,9 +68,10 @@ class SubLicenceTypeController extends Controller
      * @param  \App\Models\SubLicenceType  $subLicenceType
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubLicenceType $subLicenceType)
+    public function edit($id)
     {
-        //
+         $sublicences = SubLicenceType::find($id);
+        return view('admin.sublicence.edit',compact('sublicences'));
     }
 
     /**
@@ -67,9 +81,16 @@ class SubLicenceTypeController extends Controller
      * @param  \App\Models\SubLicenceType  $subLicenceType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubLicenceType $subLicenceType)
+    public function update(Request $request, $id)
     {
-        //
+        $sublicences = SubLicenceType::find($id);
+         $sublicence=$sublicences->update([
+            'sub_lic_name'=>$request->sub_lic_name,
+            'sub_lic_short'=>$request->sub_lic_short,
+        ]
+        );
+
+          return redirect()->route('sublicence.index')->with('success','SubLicenceType updated successfully');;
     }
 
     /**
@@ -78,8 +99,10 @@ class SubLicenceTypeController extends Controller
      * @param  \App\Models\SubLicenceType  $subLicenceType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubLicenceType $subLicenceType)
+    public function destroy($id)
     {
-        //
+        $sublicences = SubLicenceType::find($id);
+        $sublicences->delete();
+        return redirect()->route('sublicence.index')->with('success','SubLicenceType deleted successfully');;
     }
 }

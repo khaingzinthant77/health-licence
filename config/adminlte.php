@@ -243,17 +243,17 @@ return [
         ],
         [
             'text' => 'Licence Type',
-            'url'  => 'admin/settings',
+            'url'  => 'licence',
             'icon' => 'fas fa-certificate',
         ],
         [
             'text' => 'Sub Licence Type',
-            'url'  => 'admin/settings',
+            'url'  => 'sublicence',
             'icon' => 'fas fa-certificate',
         ],
         [
             'text' => 'Township',
-            'url'  => 'admin/settings',
+            'url'  => 'township',
             'icon' => 'fas fa-city',
         ],
         // [
