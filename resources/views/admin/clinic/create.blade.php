@@ -3,7 +3,6 @@
 @section('title', 'Customer')
 
 @section('content_header')
- <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet" />
 <style type="text/css">
  
      tr:hover td {
@@ -171,6 +170,12 @@
                         </div>
                         <div class="col-md-7 {{ $errors->first('expire_date', 'has-error') }}">
                             <input type="text" name="expire_date" id="expire_date" class="form-control unicode" placeholder="01-08-2022" value="{{ old('expire_date') }}">
+                           <!--  <div class="input-group date col-md-7">
+                                <input type="text" class="form-control" value="12-02-2012" id="expire_date">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div> -->
                          
                         </div>    
                     </div><br>
@@ -259,6 +264,7 @@
 
 
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{asset('bootstrap-datepicker/css/bootstrap-datepicker.css')}}">
 <style>
         /* ------------------- */
         /* TEMPLATE        -- */
@@ -507,17 +513,17 @@
 
 
 @section('js')
-    <script src=" {{ asset('js/business/moment.min.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap-datepicker/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+
     <script>
         $(function() {
               $('table').on("click", "tr.table-tr", function() {
                 window.location = $(this).data("url");
               });
             });
-        $("#issue_date").datepicker({ dateFormat: 'dd-mm-yy' });
-        $("#expire_date").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#issue_date").datepicker({ format: 'dd/mm/yyyy' });
+        $("#expire_date").datepicker({ format: 'dd/mm/yyyy' });
         $("#clinic_next").click(function(){
                     // $("#tab-2").prop("checked", true);
 
@@ -699,8 +705,8 @@
                         }
 
                         if (owner_name && ph_no && nrc && owner_photo && owner_address) {
-                            // $('form').submit();
-                            alert("Hi");
+                            $('form').submit();
+                            // alert("Hi");
                         }
                     });
             });

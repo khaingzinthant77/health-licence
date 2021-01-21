@@ -8,6 +8,7 @@ use App\Models\Township;
 use App\Models\LicenceType;
 use App\Models\SubLicenceType;
 use App\Models\ClinicHistory;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Validator;
 use File;
@@ -65,7 +66,6 @@ class ClinicController extends Controller
             'owner_address'=>'required'
         ];
 
-         // $this->validate($request,$rules);
         $validator = Validator::make($request->all(), $rules);
        if ($validator->passes()) {
                 DB::beginTransaction();
@@ -136,13 +136,13 @@ class ClinicController extends Controller
 
                         DB::commit();
                 } catch (Exception $e) {
-                    dd($e);
+                    // dd($e);
                   DB::rollback();
-                    return redirect()->route('clinic.index')->with('success','Success');
+                    return redirect()->route('clinic.index')->with('error','Error');
                 } 
                 return redirect()->route('clinic.index')->with('success','Success');
        }else{
-        return redirect()->route('clinic.index')->with('success','Success');
+        return redirect()->route('clinic.index')->with('error','Error');
        }
 
         
@@ -159,9 +159,10 @@ class ClinicController extends Controller
         $clinic = Clinic::find($id);
         $clinic_photos = Clinic_Photo::where('clinic_id',$id)->get();
         $histories = ClinicHistory::where('clinic_id',$id)->get();
+        $doctors = Doctor::where('clinic_id',$id)->get();
         // dd($history);
         $count = $histories->count();
-        return view('admin.clinic.show',compact('clinic','clinic_photos','histories','count'));
+        return view('admin.clinic.show',compact('clinic','clinic_photos','histories','count','doctors'));
     }
 
     /**
@@ -173,9 +174,16 @@ class ClinicController extends Controller
     public function edit($id)
     {
         $clinic = Clinic::find($id);
-        $clinic_photos = Clinic_Photo::where('clinic_id',$id)->get();
 
-        return view('admin.clinic.edit',compact('clinic','clinic_photos'));
+        $townships = Township::all();
+        $licence_types = LicenceType::all();
+        $sub_licences = SubLicenceType::all();
+
+        $clinic_photos = Clinic_Photo::where('clinic_id',$id)->get();
+        $clinic_histories = ClinicHistory::where('clinic_id',$id)->get();
+        $clinic_history = $clinic_histories[0];
+
+        return view('admin.clinic.edit',compact('clinic','clinic_photos','townships','licence_types','sub_licences','clinic_history'));
     }
 
     /**
@@ -187,6 +195,7 @@ class ClinicController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $rules = [
             'clinic_name'=>'required',
             'owner_name'=>'required',
@@ -196,74 +205,100 @@ class ClinicController extends Controller
             'owner_address'=>'required'
         ];
 
-         $this->validate($request,$rules);
-         $clinic = Clinic::find($id);
+         // $this->validate($request,$rules);
+        $validator = Validator::make($request->all(), $rules);
+           if ($validator->passes()) {
+            DB::beginTransaction();
 
-         $filename="img_".date("Ymd");
-         $path='/uploads/owner_photo/'.date("Ymd").'/';
+            $clinic = Clinic::find($id);
 
-         $public_path = public_path().$path;
+             $filename="img_".date("Ymd");
+             $path='/uploads/owner_photo/'.date("Ymd").'/';
+
+             $public_path = public_path().$path;
 
 
-         $photo = ($request->owner_photo != '') ? $request->owner_photo : $clinic->owner_photo;
-        //upload image
-        if ($file = $request->file('owner_photo')) {
-            // $extension = $file->getClientOriginalExtension();
-            // $safeName = str_random('10') . '.' . $extension;
-            // $file->move($public_path, $safeName);
-            // $photo = $safeName;
-            $file = $request->file('owner_photo');
-            $extension = $file->getClientOriginalExtension();
-            $photo = $filename .'.'. $extension;
-            // dd($photo);
-            $file->move($public_path, $photo);
-        }
-
-        $clinic = $clinic->update([
-            'clinic_name'=> $request->clinic_name,
-            'clinic_address'=> $request->clinic_address,
-            'owner'=>$request->owner_name,
-            'nrc'=>$request->nrc,
-            'address'=>$request->owner_address,
-            'phone'=>$request->ph_no,
-            'path'=>$path,
-            'owner_photo'=>$photo
-        ]
-        );
-
-        // dd($request->all());
-
-        $clinic_photos = ($request->clinic_photos != '') ? $request->clinic_photos : Clinic_Photo::where('clinic_id',$id)->get();
-        // dd($clinic_photos);
-
-           if ($request->clinic_photo != null) {
-                $clinics_photo = Clinic_Photo::where('clinic_id',$id)->delete();
-
-                foreach ($request->clinic_photo as $key => $image) {
-                        $filename=$key."img_".date("Ymd");
-                        $path='/uploads/clinic/'.date("Ymd").'/';
-
-                        $public_path = public_path().$path;
-                        // $photo = "";
-                        //upload image
-                        if ($file = $image) {
-                            // dd("Here");
-                            $extension = $file->getClientOriginalExtension();
-                            $safeName = $filename . '.' . $extension;
-                            $file->move($public_path, $safeName);
-                            $clinic_photos = $safeName;
-                        }
-
-                        $image = Clinic_Photo::create([
-                            'clinic_id'=>$id,
-                            'path'=>$path,
-                            'clinic_photo'=>$clinic_photos,
-                        ]);
-                        // dd($image);
-                    }
+             $photo = ($request->owner_photo != '') ? $request->owner_photo : $clinic->owner_photo;
+            //upload image
+            if ($file = $request->file('owner_photo')) {
+                // $extension = $file->getClientOriginalExtension();
+                // $safeName = str_random('10') . '.' . $extension;
+                // $file->move($public_path, $safeName);
+                // $photo = $safeName;
+                $file = $request->file('owner_photo');
+                $extension = $file->getClientOriginalExtension();
+                $photo = $filename .'.'. $extension;
+                // dd($photo);
+                $file->move($public_path, $photo);
             }
 
-        return redirect()->route('clinic.index')->with('success'.'Success');
+            try {
+                $clinic = $clinic->update([
+                'clinic_name'=> $request->clinic_name,
+                'clinic_address'=> $request->clinic_address,
+                'owner'=>$request->owner_name,
+                'nrc'=>$request->nrc,
+                'address'=>$request->owner_address,
+                'phone'=>$request->ph_no,
+                'path'=>$path,
+                'owner_photo'=>$photo
+            ]
+            );
+
+            // dd($request->all());
+
+            $clinic_photos = ($request->clinic_photos != '') ? $request->clinic_photos : Clinic_Photo::where('clinic_id',$id)->get();
+            // dd($clinic_photos);
+
+               if ($request->clinic_photo != null) {
+                    $clinics_photo = Clinic_Photo::where('clinic_id',$id)->delete();
+
+                    foreach ($request->clinic_photo as $key => $image) {
+                            $filename=$key."img_".date("Ymd");
+                            $path='/uploads/clinic/'.date("Ymd").'/';
+
+                            $public_path = public_path().$path;
+                            // $photo = "";
+                            //upload image
+                            if ($file = $image) {
+                                // dd("Here");
+                                $extension = $file->getClientOriginalExtension();
+                                $safeName = $filename . '.' . $extension;
+                                $file->move($public_path, $safeName);
+                                $clinic_photos = $safeName;
+                            }
+
+                            $image = Clinic_Photo::create([
+                                'clinic_id'=>$id,
+                                'path'=>$path,
+                                'clinic_photo'=>$clinic_photos,
+                            ]);
+                            // dd($image);
+                        }
+                }
+                $clinic_history = ClinicHistory::where('clinic_id',$id)->update([
+                    'lic_id'=>$request->licence_id,
+                    'sub_lic_id'=>$request->sub_licences_id,
+                    'tsh_id'=>$request->tsh_id,
+                    'lic_no'=>$request->licence_no,
+                    'issue_date'=>date('Y-m-d', strtotime($request->issue_date)),
+                    'duration'=>$request->duration,
+                    'expire_date'=>date('Y-m-d', strtotime($request->expire_date))
+                ]);
+
+                DB::commit();
+
+            } catch (Exception $e) {
+                dd($e);
+                DB::rollback();
+                return redirect()->route('clinic.index')->with('error','Error');
+            }
+            return redirect()->route('clinic.index')->with('success','Success');
+        }else{
+
+         
+        return redirect()->route('clinic.index')->with('error'.'Error');
+        }
     }
 
     /**
@@ -286,5 +321,14 @@ class ClinicController extends Controller
 
         $clinic_data->delete();
         return redirect()->route('clinic.index')->with('success','Successfully');
+    }
+
+    public function print($id)
+    {
+        // dd("Herer");
+        $clinic = Clinic::find($id);
+        $clinic_histories = ClinicHistory::where('clinic_id',$id)->get();
+        $clinic_history = $clinic_histories[0];
+        return view('admin.clinic.print',compact('clinic','clinic_history'));
     }
 }

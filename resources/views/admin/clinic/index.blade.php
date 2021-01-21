@@ -4,6 +4,10 @@
 
 @section('content_header')
     <h5 style="color: blue;">ဆေးခန်းများ</h5>
+    <script src=" {{ asset('toasterjquery.js') }}" ></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('toasterbootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('toastermin.css')}}">
+    <script type="text/javascript" src="{{asset('toastermin.js')}}"></script>
 @stop
 @section('content')
     <?php
@@ -62,8 +66,10 @@
             <div align="center">
                 <p>Total - {{$count}}</p>
           </div>
+          {!! $clinics->links() !!}
        </div>
-        {{ $clinics->appends(request()->input())->links()}}
+       
+        
     </div>
 @stop 
 
@@ -118,6 +124,15 @@
             }
             toastr.success("{{ session('success') }}");
         @endif
+        
+        @if(Session::has('error'))
+          toastr.options =
+          {
+            "closeButton" : true,
+            "progressBar" : true
+          }
+                toastr.error("{{ session('error') }}");
+          @endif
         $(document).ready(function(){
             setTimeout(function(){
             $("div.alert").remove();

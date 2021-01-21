@@ -4,6 +4,10 @@
 
 @section('content_header')
     <h5 style="color: blue;">ဆရာဝန်များ</h5>
+    <script src=" {{ asset('toasterjquery.js') }}" ></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('toasterbootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('toastermin.css')}}">
+    <script type="text/javascript" src="{{asset('toastermin.js')}}"></script>
 @stop
 @section('content')
     <?php

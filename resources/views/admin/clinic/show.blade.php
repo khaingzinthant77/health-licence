@@ -61,7 +61,7 @@
                                 @csrf
                                 @method('DELETE')
 
-                                <a href="" target="_blank" class="btn btn-sm btn-warning" style="margin-right: 10px;"><i class="fas fa-print"></i></a>
+                                <a href="{{route('clinic.print',$clinic->id)}}" target="_blank" class="btn btn-sm btn-warning" style="margin-right: 10px;"><i class="fas fa-print"></i></a>
 
                                 <a class="btn btn-sm btn-primary" href="{{route('clinic.edit',$clinic->id)}}"><i class="fa fa-fw fa-edit" /></i></a>
 
@@ -111,7 +111,7 @@
                 @endforeach
                  @else
                 <tr align="center">
-                      <td colspan="5">No Data!</td>
+                      <td colspan="8">No Data!</td>
                 </tr>
                 @endif
                 </table>
@@ -131,15 +131,15 @@
                        <h6 style="font-size:15px;" class="col-md-2">ပိုင်ရှင်အမည်*</h6>
                         <div class="col-md-7 {{ $errors->first('owner_name', 'has-error') }}">
                             
-                            <input type="text" name="owner_name" id="owner_name" value="{{ old('owner_name',$clinic->owner) }}" class="form-control unicode" placeholder="ဦးမောင်မောင်">
+                            <input type="text" name="owner_name" id="owner_name" value="{{ old('owner_name',$clinic->owner) }}" class="form-control unicode" placeholder="ဦးမောင်မောင်" readonly="readonly">
                          
                         </div>    
                    </div><br>
                    <div class="row">
                         <h6 style="font-size:15px;" class="col-md-2">ဖုန်းနံပါတ်*</h6>
-                        <div class="col-md-7 {{ $errors->first('phone', 'has-error') }}">
+                        <div class="col-md-7 {{ $errors->first('ph_no', 'has-error') }}">
                             
-                            <input type="number" name="ph_no" id="ph_no" value="{{ old('ph_no',$clinic->ph_no) }}" class="form-control unicode" placeholder="09987656787">
+                            <input type="number" name="ph_no" id="ph_no" value="{{ old('ph_no',$clinic->phone) }}" class="form-control unicode" placeholder="09987656787" readonly="readonly">
                          
                         </div> 
                     </div><br>
@@ -147,7 +147,7 @@
                         <h6 style="font-size:15px;" class="col-md-2">မှတ်ပုံတင်နံပါတ်*</h6>
                         <div class="col-md-7 {{ $errors->first('nrc', 'has-error') }}">
                             
-                            <input type="text" name="nrc" id="nrc" value="{{ old('nrc',$clinic->nrc) }}" class="form-control unicode" placeholder="9/PAMANA(N)111111">
+                            <input type="text" name="nrc" id="nrc" value="{{ old('nrc',$clinic->nrc) }}" class="form-control unicode" placeholder="9/PAMANA(N)111111" readonly="readonly">
                          
                         </div>
                     </div><br>
@@ -156,7 +156,7 @@
                         <h6 style="font-size:15px;" class="col-md-2">နေရပ်လိပ်စာ*</h6>
                         <div class="col-md-7 {{ $errors->first('owner_address', 'has-error') }}">
                             
-                            <textarea name="owner_address" class="form-control" placeholder="ပျဉ်းမနား" id="owner_address">{{$clinic->owner_address}}</textarea>
+                            <textarea name="owner_address" class="form-control" placeholder="ပျဉ်းမနား" id="owner_address" readonly="readonly">{{$clinic->address}}</textarea>
                             {!! $errors->first('owner_address', '<span class="error_msg unicode">:message</span> ') !!}
                          
                         </div> 
@@ -179,18 +179,53 @@
 
         <div class="tabby-tab" style="margin-right: 5px;">
             <input type="radio" id="tab-3" name="tabby-tabs">
-            <label for="tab-3">ပုံ</label>
+            <label for="tab-3">လုပ်ငန်းပုံ</label>
             <div class="tabby-content">
               <div class="row">
                   @foreach ($clinic_photos as $image)
                                 <div class="col-md-4">
                                     <img src="{{ asset( $image->path .'/' . $image->clinic_photo) }}" alt="image"
-                                                width="100px">
+                                                width="200px">
                                 </div>
 
                                 <br>
                         @endforeach
               </div>
+            </div>
+        </div>
+        <div class="tabby-tab" style="margin-right: 5px;">
+            <input type="radio" id="tab-4" name="tabby-tabs">
+            <label for="tab-4">ဆရာဝန်များ</label>
+            <div class="tabby-content">
+              <div class="table-responsive">
+                <table class="table table-bordered styled-table">
+                    <thead>
+                    <tr>
+                         <th>ဆရာဝန်အမည်</th>
+                         <th>ဘွဲ့အမည်</th> 
+                        <th>ဖုန်းနံပါတ်</th>
+                        <th>နေရပ်လိပ်စာ</th>
+                    </tr>
+                    </thead>
+                @if(count($doctors)>0)
+                @foreach($doctors as $doctor)
+                    <tr>
+                        <td>{{$doctor->doc_name}}</td>
+                        <td>{{$doctor->doc_degree}}</td>
+                       <td>{{$doctor->doc_phone}}</td>
+                       <td>{{$doctor->doc_address}}</td>
+                    </tr>
+                @endforeach
+                 @else
+                <tr align="center">
+                      <td colspan="5">No Data!</td>
+                </tr>
+                @endif
+                </table>
+            <div align="center">
+                <p style="color: black;">Total - 1</p>
+          </div>
+       </div>
             </div>
         </div>
     
@@ -235,7 +270,7 @@
         .tabs {
             position: relative;
             display: flex;
-            min-height: 1000px;
+            min-height: 500px;
             border-radius: 8px 8px 0 0;
             overflow: hidden;
         }

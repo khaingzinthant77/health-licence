@@ -37,4 +37,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('township','App\Http\Controllers\TownshipController');
 	Route::resource('licence','App\Http\Controllers\LicenceTypeController');
 	Route::resource('sublicence','App\Http\Controllers\SubLicenceTypeController');
+	Route::get('/print/{id}','App\Http\Controllers\ClinicController@print')->name('clinic.print');
 });
