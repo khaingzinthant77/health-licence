@@ -331,4 +331,18 @@ class ClinicController extends Controller
         $clinic_history = $clinic_histories[0];
         return view('admin.clinic.print',compact('clinic','clinic_history'));
     }
+
+    public function qrData($id)
+    {
+        $clinic = Clinic::find($id);
+        $clinic_history = [];
+
+        $clinic_histories = ClinicHistory::where('clinic_id',$id)->get();
+        if (count($clinic_histories)>0) {
+            $clinic_history = $clinic_histories[0];
+        }
+        $clinic_photos = Clinic_Photo::where('clinic_id',$id)->get();
+        $doctors = Doctor::where('clinic_id',$id)->get();
+        return view('admin.clinic.qrdata',compact('clinic','clinic_history','clinic_photos','doctors'));
+    }
 }

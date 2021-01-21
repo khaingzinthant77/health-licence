@@ -263,8 +263,8 @@
        </div>
        <div class="row" style="width: 100%">
            <div class="col-md-2">
-               <input type="text" name="" style="width: 100px;height: 100px;margin-top: 20px;margin-left: 70px;">
-
+               <!-- <input type="text" name="" style="width: 100px;height: 100px;margin-top: 20px;margin-left: 70px;"> -->
+               {!! QrCode::size(150)->generate('http://health-licence.test/qr/'.$clinic->id); !!}
            </div>
            <div class="col-md-10" id="header" style="margin-top: 70px;width: 75%;">
                <label style="font-size: 18px;">အတွင်းရေးမှူး</label>
