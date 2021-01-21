@@ -3,7 +3,7 @@
 @section('title', 'Licence')
 
 @section('content_header')
-    <h5 style="color: blue;">Licence</h5>
+    <h5 style="color: blue;">လိုင်စင်များ</h5>
 @stop
 @section('content')
     <?php
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn btn-success unicode" href="{{route('licence.create')}}"><i class="fas fa-user-cog" /></i> Add New!</a>
+                    <a class="btn btn-success unicode" href="{{route('licence.create')}}"><i class="fa fa-plus-square" /></i> Add New!</a>
                 </div>
             </div>
         </form>
@@ -49,8 +49,9 @@
                   <form action="{{route('licence.destroy',$licence->id)}}" method="POST" onsubmit="return confirm('Do you really want to delete?');">
                     @csrf
                     @method('DELETE')
-                    <a class="btn btn-sm btn-primary" href="{{route('licence.edit',$licence->id)}}" ><i class="fa fa-fw fa-edit" style="padding-top: 5px;padding-bottom: 5px;padding-left: 2px;padding-right: 5px"/></i></a> 
-                     <button type="submit" class="btn btn-sm btn-danger" style="margin-left: 10px"><i class="fa fa-fw fa-trash" /></i></button> 
+                      <a class="btn btn-sm btn-info" href="{{route('licence.show',$licence->id)}}"><i class="fa fa-fw fa-eye" /></i></a> 
+                    <a class="btn btn-sm btn-primary" href="{{route('licence.edit',$licence->id)}}" ><i class="fa fa-fw fa-edit" /></i></a> 
+                     <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-fw fa-trash" /></i></button> 
                    </form>
                 </td>
                 </tr>

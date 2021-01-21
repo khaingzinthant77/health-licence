@@ -65,9 +65,10 @@ class TownshipController extends Controller
      * @param  \App\Models\Township  $township
      * @return \Illuminate\Http\Response
      */
-    public function show(Township $township)
+    public function show($id)
     {
-        //
+        $townships = Township::find($id);
+        return view('admin.township.show',compact('townships'));
     }
 
     /**
