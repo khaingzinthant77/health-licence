@@ -66,9 +66,10 @@ class LicenceTypeController extends Controller
      * @param  \App\Models\LicenceType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function show(LicenceType $licenceType)
+    public function show($id)
     {
-        //
+         $licences = LicenceType::find($id);
+        return view('admin.licence.show',compact('licences'));
     }
 
     /**
