@@ -63,9 +63,10 @@ class SubLicenceTypeController extends Controller
      * @param  \App\Models\SubLicenceType  $subLicenceType
      * @return \Illuminate\Http\Response
      */
-    public function show(SubLicenceType $subLicenceType)
+    public function show($id)
     {
-        //
+         $sublicences = SubLicenceType::find($id);
+        return view('admin.sublicence.show',compact('sublicences'));
     }
 
     /**
