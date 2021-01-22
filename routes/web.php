@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::get('dashboard','HomeController@index')->name('dashboard');
 	Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
+	Route::resource('roles', 'App\Http\Controllers\RoleController');
+    Route::resource('users', 'App\Http\Controllers\UserController');
+
 	Route::resource('clinic','App\Http\Controllers\ClinicController');
 	Route::resource('doctor','App\Http\Controllers\DoctorController');
 	Route::resource('history','App\Http\Controllers\ClinicHistoryController');
@@ -40,3 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/print/{id}','App\Http\Controllers\ClinicController@print')->name('clinic.print');
 	Route::get('/qr/{id}','App\Http\Controllers\ClinicController@qrData')->name('qr.data');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

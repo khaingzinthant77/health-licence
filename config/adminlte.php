@@ -17,7 +17,7 @@ return [
     'title' => 'Health Licence',
     'title_prefix' => '',
     'title_postfix' => '',
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Favicon
@@ -228,33 +228,52 @@ return [
         [
             'text'        => 'Clinic',
             'url'         => 'clinic',
-            'icon'        => 'fas fa-clinic-medical'
+            'icon'        => 'fas fa-clinic-medical',
+            'permission'=>'clinic-list'
         ],
         // ['header' => 'account_settings'],
         [
             'text' => 'Doctors',
             'url'  => 'doctor',
             'icon' => 'fas fa-user-md',
+            'permission'=>'doctor-list'
         ],
         [
             'text' => 'Licence History',
             'url'  => 'history',
             'icon' => 'fas fa-history',
+            'permission'=>'clinichistory-list'
         ],
         [
             'text' => 'Licence Type',
             'url'  => 'licence',
             'icon' => 'fas fa-certificate',
+            'permission'=>'licencetype-list'
         ],
         [
             'text' => 'Sub Licence Type',
             'url'  => 'sublicence',
             'icon' => 'fas fa-certificate',
+            'permission'=>'sublicence-list'
         ],
         [
             'text' => 'Township',
             'url'  => 'township',
             'icon' => 'fas fa-city',
+            'permission'=>'township-list'
+        ],
+        ['header' => 'account_settings'],
+        [
+            'text' => 'Login User',
+            'url'  => 'users',
+            'icon' => 'fas fa-user-plus',
+            'permission'=>'register-list',
+        ],
+        [
+            'text' => 'Roles',
+            'url'  => 'roles',
+            'icon' => 'fas fa-user-tag',
+            'permission'=>'role-list'
         ],
         // [
         //     'text'    => 'multilevel',

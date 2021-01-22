@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ClinicHistoryController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:clinichistory-list', ['only' => ['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

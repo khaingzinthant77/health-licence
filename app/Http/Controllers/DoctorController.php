@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:doctor-list|doctor-create|doctor-show|doctor-edit|doctor-deiete', ['only' => ['index','show','approve',]]);
+         $this->middleware('permission:doctor-create', ['only' => ['create','store','approve']]);
+         $this->middleware('permission:doctor-edit', ['only' => ['edit','update','approve']]);
+         $this->middleware('permission:doctor-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:doctor-show', ['only' => ['show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

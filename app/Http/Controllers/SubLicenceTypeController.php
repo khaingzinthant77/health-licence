@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class SubLicenceTypeController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:sublicence-list|sublicence-create|sublicence-show|sublicence-edit|sublicence-delete', ['only' => ['index','show','approve',]]);
+         $this->middleware('permission:sublicence-create', ['only' => ['create','store','approve']]);
+         $this->middleware('permission:sublicence-edit', ['only' => ['edit','update','approve']]);
+         $this->middleware('permission:sublicence-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:sublicence-show', ['only' => ['show']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

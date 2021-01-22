@@ -1,0 +1,30 @@
+th{
+    background-color: rgba(0,0,0,.03);
+}
+.page_body{
+    margin: 10px;
+}
+
+  .error_msg{
+    color: #DD4B39;
+  }
+  .has-error input{
+    border-color: #DD4B39;
+  }
+
+.remove_preview {
+    position:relative;
+    top:-95px;
+    right:3px;
+    background:black;
+    color:white;
+    border-radius:50px;
+    font-size:1.1em;
+    padding: 0 0.3em 0;
+    text-align:center;
+    cursor:pointer;
+}
+.remove_preview:before {
+    content: "×";
+}
+

@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class TownshipController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:township-list|township-create|township-show|township-edit|township-deiete', ['only' => ['index','show','approve',]]);
+         $this->middleware('permission:township-create', ['only' => ['create','store','approve']]);
+         $this->middleware('permission:township-edit', ['only' => ['edit','update','approve']]);
+         $this->middleware('permission:township-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:township-show', ['only' => ['show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

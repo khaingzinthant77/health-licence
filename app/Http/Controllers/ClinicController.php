@@ -10,12 +10,22 @@ use App\Models\SubLicenceType;
 use App\Models\ClinicHistory;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Hashids\Hashids;
 use Validator;
 use File;
 use DB;
 
 class ClinicController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:clinic-list|clinic-create|clinic-show|clinic-edit|clinic-delete', ['only' => ['index','show','approve',]]);
+         $this->middleware('permission:clinic-create', ['only' => ['create','store','approve']]);
+         $this->middleware('permission:clinic-edit', ['only' => ['edit','update','approve']]);
+         $this->middleware('permission:clinic-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:clinic-show', ['only' => ['show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -327,13 +337,20 @@ class ClinicController extends Controller
     {
         // dd("Herer");
         $clinic = Clinic::find($id);
+
+        $hashids = new Hashids('', 10); // pad to length 10
+        $hashids = $hashids->encodeHex($id);
+        // dd($hashids);
         $clinic_histories = ClinicHistory::where('clinic_id',$id)->get();
         $clinic_history = $clinic_histories[0];
-        return view('admin.clinic.print',compact('clinic','clinic_history'));
+        return view('admin.clinic.print',compact('clinic','clinic_history','hashids'));
     }
 
-    public function qrData($id)
+    public function qrData($hashid)
     {
+        $hashids = new Hashids('', 10); // pad to length 10
+        $id = $hashids->decodeHex($hashid); 
+
         $clinic = Clinic::find($id);
         $clinic_history = [];
 
