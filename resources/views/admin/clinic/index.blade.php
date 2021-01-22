@@ -18,7 +18,7 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Name">
+                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search Keyword...">
                         </div>
                     </div>
                 </div>

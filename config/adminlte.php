@@ -237,7 +237,7 @@ return [
             'icon' => 'fas fa-user-md',
         ],
         [
-            'text' => 'Clinic History',
+            'text' => 'Licence History',
             'url'  => 'history',
             'icon' => 'fas fa-history',
         ],

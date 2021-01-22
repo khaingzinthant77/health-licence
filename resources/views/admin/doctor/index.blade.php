@@ -65,7 +65,7 @@
                 <p>Total - {{$count}}</p>
           </div>
        </div>
-        {{ $doctors->appends(request()->input())->links()}}
+        {!! $doctors->links() !!}
     </div>
 @stop 
 

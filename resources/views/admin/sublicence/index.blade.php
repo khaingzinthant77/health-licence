@@ -65,7 +65,7 @@
                 <p>Total - {{$count}}</p>
           </div>
        </div>
-         {{ $sublicences->appends(request()->input())->links()}}
+         {!! $sublicences->links() !!}
     </div>
 @stop 
 

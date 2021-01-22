@@ -3,18 +3,29 @@
 @section('title', 'Clinic')
 
 @section('content_header')
-    <h5 style="color: blue;">ဆေးခန်းများ</h5>
+    <h5 style="color: blue;">လိုင်စင်မှတ်တမ်းများ</h5>
 @stop
 @section('content')
     <?php
-        $name = isset($_GET['name'])?$_GET['name']:'';   
+        $name = isset($_GET['name'])?$_GET['name']:'';
+        $tsh_id = isset($_GET['tsh_id'])?$_GET['tsh_id']:'';  
     ?>
-        <form action="{{ route('clinic.index') }}" method="get" accept-charset="utf-8" class="form-horizontal">
+        <form action="{{ route('history.index') }}" method="get" accept-charset="utf-8" class="form-horizontal">
             <div class="row">
                 <div class="col-md-10">
                     <div class="row">
-                        <div class="col-md-3">
-                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Name">
+                        <div class="col-md-2">
+                            <p style="font-size: 12px;">Search by keyword</p>
+                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search...">
+                        </div>
+                        <div class="col-md-2">
+                            <p style="font-size: 12px;">Select Township</p>
+                            <select class="form-control" name="tsh_id" id="tsh_id">
+                                <option value="">All</option>
+                                @foreach($townships as $township)
+                                <option value="{{$township->id}}" {{ ($tsh_id == $township->id)?'selected':'' }}>{{$township->tsh_name_mm}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -46,19 +57,19 @@
             @foreach($histories as $history)
                 <tr class="table-tr" data-url="">
                     <td>{{++$i}}</td>
-                    <td>{{$history->viewClinic->clinic_name}}</td>
-                    <td>{{$history->viewLicenceType->lic_name}}</td>
-                    <td>{{$history->viewSubLicence->sub_lic_name}}</td>
-                    <td>{{$history->viewSubLicence->sub_lic_short}}</td>
+                    <td>{{$history->clinic_name}}</td>
+                    <td>{{$history->lic_name}}</td>
+                    <td>{{$history->sub_lic_name}}</td>
+                    <td>{{$history->sub_lic_short}}</td>
                     <td>{{$history->lic_no}}</td>
-                   <td>{{$history->viewTownship->tsh_name_mm}}</td>
+                   <td>{{$history->tsh_name_mm}}</td>
                     <td>{{$history->duration}}</td>
                 </tr>
            
             @endforeach
              @else
             <tr align="center">
-                  <td colspan="7">No Data!</td>
+                  <td colspan="8">No Data!</td>
             </tr>
             @endif
             </table>
@@ -66,7 +77,7 @@
                 <p>Total - {{$count}}</p>
           </div>
        </div>
-        {{ $histories->appends(request()->input())->links()}}
+        {!! $histories->links() !!}
     </div>
 @stop 
 
@@ -130,6 +141,9 @@
                 this.form.submit();
                // $( "#form_id" )[0].submit();   
             }); 
+                $("#tsh_id").on('change',function(e){
+                    this.form.submit();
+                });
         });
             $(function() {
               $('table').on("click", "tr.table-tr", function() {
