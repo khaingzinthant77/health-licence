@@ -3,6 +3,8 @@
 @section('title', 'Customer')
 
 @section('content_header')
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <style type="text/css">
      tr:hover td {
         background: #c7d4dd !important;
@@ -43,23 +45,20 @@
 @stop
 
 @section('content')
-<div class="container">
-    <div class="row">
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-    </div>
-    <div class="row">
-        <div class="col-lg-10">
+<div class="row">
+        <div class="col-lg-9">
              <a class="btn btn-success unicode" href="{{route('clinic.index')}}"><i class="fas fa-arrow-left"></i></a>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-3">
             <div class="pull-right">
               <form action="{{route('clinic.destroy',$clinic->id)}}" method="POST" onsubmit="return confirm('Do you really want to delete?');">
+                                <a class="text-secondary" data-toggle="modal" id="mediumButton" data-target="#mediumModal"
+                                data-attr="{{ route('licence_extend',$clinic->id) }}">
+                                <i class="fas fa-edit text-gray-300"></i>
+                            </a>
                                 @csrf
                                 @method('DELETE')
+                               
 
                                 <a href="{{route('clinic.print',$clinic->id)}}" target="_blank" class="btn btn-sm btn-warning" style="margin-right: 10px;"><i class="fas fa-print"></i></a>
 
@@ -70,7 +69,15 @@
             </div>
         </div>
     </div>
-
+<div class="container">
+    <div class="row">
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+    </div>
+    
     </div>
     <br>
     <div class="tabs">
@@ -231,11 +238,29 @@
     
 
     </div>
+    <div class="modal fade" id="mediumModal" role="dialog" aria-labelledby="mediumModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="mediumBody">
+                    <div>
+                        <!-- the result to be displayed apply here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop 
 
 
 
 @section('css')
+
 <style>
         /* ------------------- */
         /* TEMPLATE        -- */
@@ -377,107 +402,7 @@
 
             #myImg:hover {opacity: 0.7;}
 
-            /* The Modal (background) */
-            .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: -10;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(243, 237, 237); /* Fallback color */
-            background-color: rgba(221, 215, 215, 0.9); /* Black w/ opacity */
-            }
-            .modal1 {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 72%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(243, 237, 237); /* Fallback color */
-            background-color: rgba(221, 215, 215, 0.9); /* Black w/ opacity */
-            }
-
-            /* Modal Content (image) */
-            .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 595px;
-            max-height:842px;
-            margin-left: 22%;
-            }
-            .modal-content1 {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 595px;
-            max-height:442px;
-            margin-left: 22%;
-            }
-
-            /* Caption of Modal Image */
-            #caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-            height: 150px;
-            }
-
-            /* Add Animation */
-            .modal-content, #caption {  
-            -webkit-animation-name: zoom;
-            -webkit-animation-duration: 0.6s;
-            animation-name: zoom;
-            animation-duration: 0.6s;
-            }
-
-            @-webkit-keyframes zoom {
-            from {-webkit-transform:scale(0)} 
-            to {-webkit-transform:scale(1)}
-            }
-
-            @keyframes zoom {
-            from {transform:scale(0)} 
-            to {transform:scale(1)}
-            }
-
-            /* The Close Button */
-            .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: red;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            }
-
-            .close:hover,
-            .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-            }
-
-            /* 100% Image Width on Smaller Screens */
-            @media only screen and (max-width: 700px){
-            .modal-content {
-                width: 100%;
-            }
-            }
-
+            
 </style>
 @stop
 
@@ -487,6 +412,31 @@
     <script src=" {{ asset('js/business/moment.min.js') }}" ></script>
     <script src="{{ asset('js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
     <script>
+        $(document).on('click', '#mediumButton', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            alert(href);
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#mediumModal').modal("show");
+                    $('#mediumBody').html(result).show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                // error: function(jqXHR, testStatus, error) {
+                //     console.log(error);
+                //     alert("Page " + href + " cannot open. Error:" + error);
+                //     $('#loader').hide();
+                // },
+                timeout: 8000
+            })
+        });
         $(function() {
               $('table').on("click", "tr.table-tr", function() {
                 window.location = $(this).data("url");

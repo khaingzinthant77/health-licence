@@ -116,4 +116,20 @@ class ClinicHistoryController extends Controller
     {
         //
     }
+
+    public function extend_licence(Request $request)
+    {
+        // dd($request->all());
+        $licence_extend = ClinicHistory::create([
+            'clinic_id'=>$request->clinic_id,
+            'lic_id'=>$request->lic_id,
+            'sub_lic_id'=>$request->sub_lic_id,
+            'tsh_id'=>$request->tsh_id,
+            'lic_no'=>$request->lic_no,
+            'issue_date'=>date('Y-m-d', strtotime($request->issue_date)),
+            'duration'=>$request->duration,
+            'expire_date'=>date('Y-m-d', strtotime($request->expire_date))
+        ]);
+        return redirect()->route('clinic.index')->with('success','Success');
+    }
 }

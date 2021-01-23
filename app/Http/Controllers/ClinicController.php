@@ -373,4 +373,13 @@ class ClinicController extends Controller
         $doctors = Doctor::where('clinic_id',$id)->get();
         return view('admin.clinic.qrdata',compact('clinic','clinic_history','clinic_photos','doctors'));
     }
+
+    public function extend(Request $request,$id)
+    {
+        // dd($id);
+        $clinic_histories = ClinicHistory::where('clinic_id',$id)->get();
+        $clinic_history = $clinic_histories[0];
+        // dd($clinic_histories);
+        return view('admin.clinic.extend',compact('clinic_history'));
+    }
 }

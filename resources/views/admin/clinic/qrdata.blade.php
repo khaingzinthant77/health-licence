@@ -124,19 +124,19 @@
                                     @if(count($doctors)>0)
                                     @foreach($doctors as $doctor)
                                     <div class="row">
-                                        <label>ဆရာဝန်အမည်</label>
+                                        
                                         <label>{{$doctor->doc_name}}</label>
                                     </div><br>
                                     <div class="row">
-                                        <label>ဘွဲ့အမည်</label>
+                                        
                                         <label>{{$doctor->doc_degree}}</label>
                                     </div><br>
                                     <div class="row">
-                                        <label>ဖုန်းနံပါတ်</label>
+                                        
                                         <label>{{$doctor->doc_phone}}</label>
                                     </div><br>
                                     <div class="row">
-                                        <label>နေရပ်လိပ်စာ</label>
+                                       
                                         <label>{{$doctor->doc_address}}</label>
                                     </div><hr>
                                     @endforeach

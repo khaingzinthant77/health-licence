@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('sublicence','App\Http\Controllers\SubLicenceTypeController');
 	Route::get('/print/{id}','App\Http\Controllers\ClinicController@print')->name('clinic.print');
 	Route::get('/qr/{id}','App\Http\Controllers\ClinicController@qrData')->name('qr.data');
+	Route::get('licence/extend/{id}','App\Http\Controllers\ClinicController@extend')->name('licence_extend');
+	Route::post('/extend_licence','App\Http\Controllers\ClinicHistoryController@extend_licence')->name('extend.store');
 });
 Auth::routes();
 

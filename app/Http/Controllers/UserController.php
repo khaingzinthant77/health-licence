@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Township;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -31,8 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        $townships = Township::all();
         $roles = Role::pluck('name','name')->all();
-        return view('admin.users.create',compact('roles'));
+        return view('admin.users.create',compact('roles','townships'));
     }
     
     /**
@@ -42,7 +44,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
+        // dd($request->all());
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -80,11 +83,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $townships = Township::all();
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
     
-        return view('admin.users.edit',compact('user','roles','userRole'));
+        return view('admin.users.edit',compact('user','roles','userRole','townships'));
     }
     
     /**
