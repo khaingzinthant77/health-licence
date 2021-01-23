@@ -13,17 +13,17 @@
 
 @section('content')
     <div class="content">
-    	 <h5>Clinic by Townships</h5>
+    	<!--  <h5>Clinic by Townships</h5> -->
     	  <div class="row">
             @foreach ($townships as $i=>$township)
                 <div class="col-md-3">
                     <div class="card text-white" style="background-color: {!! $colors[$i] !!}">
                         <a href="{{  url('history?tsh_id='.$township->id) }}" class="text-white">
                         <div class="card-body">
-                            <h4 align="center">{{ $township->tsh_name_en }}</h4>
+                            <h4 align="center">{{ $township->tsh_name_mm }}</h4>
                             <br/>
                             <div class="row">
-                                <div class="col-md-6">Clinic</div>
+                                <div class="col-md-6">လုပ်ငန်းလိုင်စင်</div>
                                 <div class="col-md-6" style="text-align: right">{{ $township->clinics->count() }}</div>
                             </div>
                             <br>
