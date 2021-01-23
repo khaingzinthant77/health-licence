@@ -39,6 +39,15 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+        hr {
+            display: block;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            border-style: inset;
+            border-width: 1px;
+        }
+    </style>
 @stop
 
 @section('js')
