@@ -1,3 +1,9 @@
+@php   
+    $permissionArr = auth()->user()->getAllPermissions();
+@endphp
+
+@foreach($permissionArr  as $permission)
+    @if($permission->name === $item['permission'])
 <li @if(isset($item['id'])) id="{{ $item['id'] }}" @endif class="nav-item">
 
     <a class="nav-link {{ $item['class'] }} @if(isset($item['shift'])) {{ $item['shift'] }} @endif"
@@ -21,3 +27,5 @@
     </a>
 
 </li>
+@endif
+@endforeach
