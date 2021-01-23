@@ -123,19 +123,19 @@
                                   <td>
                                     @if(count($doctors)>0)
                                     @foreach($doctors as $doctor)
-                                    <div class="row">
+                                    <div class="row" style="margin-left: 30px;">
                                         
                                         <label>{{$doctor->doc_name}}</label>
                                     </div><br>
-                                    <div class="row">
+                                    <div class="row" style="margin-left: 30px;">
                                         
                                         <label>{{$doctor->doc_degree}}</label>
                                     </div><br>
-                                    <div class="row">
+                                    <div class="row" style="margin-left: 30px;">
                                         
                                         <label>{{$doctor->doc_phone}}</label>
                                     </div><br>
-                                    <div class="row">
+                                    <div class="row" style="margin-left: 30px;">
                                        
                                         <label>{{$doctor->doc_address}}</label>
                                     </div><hr>
