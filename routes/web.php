@@ -42,8 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('licence','App\Http\Controllers\LicenceTypeController');
 	Route::resource('sublicence','App\Http\Controllers\SubLicenceTypeController');
 	Route::get('/print/{id}','App\Http\Controllers\ClinicController@print')->name('clinic.print');
-	Route::get('/qr/{id}','App\Http\Controllers\ClinicController@qrData')->name('qr.data');
 });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/qr/{id}','App\Http\Controllers\ClinicController@qrData')->name('qr.data');
