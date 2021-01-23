@@ -9,7 +9,9 @@
 @section('content')
 <div class="col-md-12">
     <div class="row">
-        <div class="col-md-11"></div>
+        <div class="col-md-11">
+          <a class="btn btn-success unicode" href="{{route('doctor.index')}}"><i class="fas fa-arrow-left"></i></a>
+        </div>
     <div class="col-md-1">
         <div class="row">
                     <form action="{{route('doctor.destroy',$doctor->id)}}" method="POST" onsubmit="return confirm('Do you really want to delete?');">

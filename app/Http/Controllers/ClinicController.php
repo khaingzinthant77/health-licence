@@ -176,7 +176,8 @@ class ClinicController extends Controller
     {
         $clinic = Clinic::find($id);
         $clinic_photos = Clinic_Photo::where('clinic_id',$id)->get();
-        $histories = ClinicHistory::where('clinic_id',$id)->get();
+        $histories = ClinicHistory::where('clinic_id',$id)->latest()->first();
+
         $doctors = Doctor::where('clinic_id',$id)->get();
         // dd($history);
         $count = $histories->count();

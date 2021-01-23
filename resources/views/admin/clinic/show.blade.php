@@ -101,26 +101,19 @@
                         <th>သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</th>
                     </tr>
                     </thead>
-                @if(count($histories)>0)
-                @foreach($histories as $history)
                     <tr>
                         
-                        <td>{{$history->viewClinic->clinic_name}}</td>
-                        <td>{{$history->viewTownship->tsh_name_mm}}</td>
+                        <td>{{$histories->viewClinic->clinic_name}}</td>
+                        <td>{{$histories->viewTownship->tsh_name_mm}}</td>
                        
-                       <td>{{$history->viewLicenceType->lic_name}}</td>
-                       <td>{{$history->viewSubLicence->sub_lic_name}}</td>
-                       <td>{{$history->lic_no}}</td>
-                       <td>{{$history->issue_date}}</td>
-                       <td>{{$history->duration}}</td>
-                       <td>{{$history->expire_date}}</td>
+                       <td>{{$histories->viewLicenceType->lic_name}}</td>
+                       <td>{{$histories->viewSubLicence->sub_lic_name}}</td>
+                       <td>{{$histories->lic_no}}</td>
+                       <td>{{date('d-m-Y',strtotime($histories->issue_date))}}</td>
+                       <td>{{$histories->duration}}</td>
+                       <td>{{date('d-m-Y',strtotime($histories->expire_date))}}</td>
                     </tr>
-                @endforeach
-                 @else
-                <tr align="center">
-                      <td colspan="8">No Data!</td>
-                </tr>
-                @endif
+                
                 </table>
             <div align="center">
                 <p style="color: black;">Total - {{$count}}</p>
