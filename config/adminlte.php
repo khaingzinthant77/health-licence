@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => 'ကျန်းမာရေး လိုင်စင်',
+    'logo' => 'လုပ်ငန်းလိုင်စင်',
     'logo_img' => 'vendor/adminlte/dist/img/icon.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -232,40 +232,41 @@ return [
         ],
     
         [
-            'text'        => 'Clinic',
+            'text'        => 'လုပ်ငန်းလိုင်စင်များ',
             'url'         => 'clinic',
             'icon'        => 'fas fa-clinic-medical',
             'permission'=>'clinic-list'
         ],
         // ['header' => 'account_settings'],
         [
-            'text' => 'Doctors',
+            'text' => 'ဆရာဝန်စာရင်း',
             'url'  => 'doctor',
             'icon' => 'fas fa-user-md',
             'permission'=>'doctor-list'
         ],
         [
-            'text' => 'Licence History',
+            'text' => 'လိုင်စင်မှတ်တမ်း',
             'url'  => 'history',
             'icon' => 'fas fa-history',
             'permission'=>'clinichistory-list'
         ],
+        ['header' => 'Master Data'],
         [
-            'text' => 'Licence Type',
+            'text' => 'လုပ်ငန်းလိုင်စင်အမျိုးအစား',
             'url'  => 'licence',
-            'icon' => 'fas fa-certificate',
+            'icon' => 'fas fa-bars',
             'permission'=>'licencetype-list'
         ],
         [
-            'text' => 'Sub Licence Type',
+            'text' => 'လုပ်ငန်းလိုင်စင်ခွဲအမျိုးအစား',
             'url'  => 'sublicence',
-            'icon' => 'fas fa-certificate',
+            'icon' => 'fas fa-dice-d6',
             'permission'=>'sublicence-list'
         ],
         [
-            'text' => 'Township',
+            'text' => 'မြို့နယ်များ',
             'url'  => 'township',
-            'icon' => 'fas fa-city',
+            'icon' => 'fas fa-map',
             'permission'=>'township-list'
         ],
         ['header' => 'account_settings'],

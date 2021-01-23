@@ -3,7 +3,7 @@
 @section('title', 'Township')
 
 @section('content_header')
-    <h5 style="color: blue;">မြို့များ</h5>
+    <h5 style="color: blue;">မြို့နယ်များ</h5>
 @stop
 @section('content')
     <?php
