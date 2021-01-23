@@ -224,6 +224,12 @@ return [
     */
 
     'menu' => [
+        [
+            'text'        => 'Dashboard',
+            'url'         => 'dashboard',
+            'icon'        => 'fas fa-clinic-medical',
+            'permission'=>'dashboard'
+        ],
     
         [
             'text'        => 'Clinic',
