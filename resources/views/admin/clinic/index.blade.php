@@ -51,7 +51,7 @@
                 <tr class="table-tr" data-url="{{ route('clinic.show',$clinic->id) }}">
                     <td>{{++$i}}</td>
                    
-                    <td>{{$clinic->viewTownship->tsh_name_mm}}</td>
+                    <td>{{$clinic->viewTownship ? $clinic->viewTownship->tsh_name_mm : ''}}</td>
                     
                     <td>{{$clinic->clinic_name}}</td>
                     <td>{{$clinic->clinic_address}}</td>
