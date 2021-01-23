@@ -72,6 +72,29 @@
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
     @endif
 
+    <link rel="stylesheet" href='https://mmwebfonts.comquas.com/fonts/?font=pyidaungsu' />
+    <style type="text/css" media="screen">
+        body{
+            font-family:Pyidaungsu,Yunghkio,'Masterpiece Uni Sans' !important;
+        }
+        .unicode{
+            font-family:Pyidaungsu,Yunghkio,'Masterpiece Uni Sans' !important;
+        }
+        
+        .help-block{
+            color: red;
+            font-family:Pyidaungsu,Yunghkio,'Masterpiece Uni Sans' !important;
+            font-size: 12px;
+        }
+        p,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 , table, .table {
+            font-family:Pyidaungsu,Yunghkio,'Masterpiece Uni Sans' !important;
+        }
+
+        p {
+            font-size: 13px !important;
+        }
+    </style>
+
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
