@@ -179,7 +179,7 @@
         #img-container {
         text-align: center;
         display: block;
-        margin-top: 20px;
+        /*margin-top: 10px;*/
       }
    
     </style>
@@ -207,7 +207,8 @@
        </div>
        <div style="margin-top: 20px;margin-left: 70px;">
            <label style="font-size: 18px;margin-left: 40px;">ပုဂ္ဂလိကကျန်းမာရေးလုပ်ငန်းဆိုင်ရာ နည်းဥအဒေ {{$clinic_history->viewLicenceType->rule_no}} နည်းဥပဒေခွဲ(ခ)အရ ဖော်ပြပါ</label><br>
-           <label style="font-size: 18px;">ပုဂ္ဂိုအား ပြည်ထောင်စုနယ်မြေ၊ နေပြည်တော်၊ {{$clinic_history->viewTownship->tsh_name_mm}} {{$clinic->address}}တွင် {{$clinic->clinic_name}} အမည်ပါ {{$clinic_history->viewSubLicence->sub_lic_name}} လုပ်ငန်းအား လုပ်ကိုင်ခွင့်ပြု၍  ဤလုပ်ငန်းလိုင်စင်ကို ထုတ်ပေးလိုက်သည်။</label>
+           <label style="font-size: 18px;">ပုဂ္ဂိုအား ပြည်ထောင်စုနယ်မြေ၊ နေပြည်တော်၊ <span
+                        style="text-decoration: underline;">{{$clinic_history->viewTownship->tsh_name_mm}} {{$clinic->address}}</span> တွင် {{$clinic->clinic_name}} အမည်ပါ {{$clinic_history->viewSubLicence->sub_lic_name}} လုပ်ငန်းအား လုပ်ကိုင်ခွင့်ပြု၍  ဤလုပ်ငန်းလိုင်စင်ကို ထုတ်ပေးလိုက်သည်။</label>
        </div>
        <div>
            <p style="text-align: center;font-size: 18px;">လိုင်စင်ခွင့်ပြုချက်ရရှိသူ</p>
@@ -219,7 +220,7 @@
                          <th>နိုင်ငံသားစိစစ်ရေးကဒ်အမှတ်</th> 
                         <th style="width: 230px;">နေရပ်လိပ်စာ</th>
                     </tr>
-                    <tr style="height: 100px;">
+                    <tr style="height: 80px;">
                         <td>{{$clinic->owner}}</td>
                         <td>{{$clinic->nrc}}</td>
                        <td>{{$clinic_history->viewTownship->tsh_name_mm}} ၊ {{$clinic->address}}</td>
@@ -229,7 +230,7 @@
            </div>
              
        </div>
-       <div class="row" style="margin-top: 30px;margin-left: 70px;">
+       <div class="row" style="margin-top: 20px;margin-left: 70px;">
            <div class="col-md-4">
                <label style="font-size: 18px;">လိုင်စင်အမှတ်</label>
            </div>
@@ -266,7 +267,7 @@
                <!-- <input type="text" name="" style="width: 100px;height: 100px;margin-top: 20px;margin-left: 70px;"> -->
                {!! QrCode::size(100)->generate('http://health-licence.test/qr/'.$hashids); !!}
            </div>
-           <div class="col-md-9" id="header" style="margin-top: 70px;width: 75%;">
+           <div class="col-md-9" id="header" style="margin-top: 50px;width: 75%;">
                <label style="font-size: 18px;">အတွင်းရေးမှူး</label>
                <label style="font-size: 18px;">နေပြည်တော်ပုဂ္ဂလိကကျန်းမာရေးဆိုင်ရာကြီးကြပ်ရေးကော်မတီ</label>
                <label style="font-size: 18px;">ပြည်ထောင်စုနယ်မြေ၊နေပြည်တော်</label>
