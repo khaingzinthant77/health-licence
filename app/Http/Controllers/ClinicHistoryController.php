@@ -119,6 +119,15 @@ class ClinicHistoryController extends Controller
 
     public function extend_licence(Request $request)
     {
+
+        $rules = [
+            'issue_date'=>'required',
+            'duration'=>'required',
+            'expire_date'=>'required',
+        ];
+
+         $this->validate($request,$rules);
+
         // dd($request->all());
         $licence_extend = ClinicHistory::create([
             'clinic_id'=>$request->clinic_id,

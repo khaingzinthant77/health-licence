@@ -52,9 +52,9 @@
         <div class="col-lg-3">
             <div class="pull-right">
               <form action="{{route('clinic.destroy',$clinic->id)}}" method="POST" onsubmit="return confirm('Do you really want to delete?');">
-                                <a class="text-secondary" data-toggle="modal" id="mediumButton" data-target="#mediumModal"
+                                <a class="btn btn-success btn-sm" data-toggle="modal" id="mediumButton" data-target="#mediumModal"
                                 data-attr="{{ route('licence_extend',$clinic->id) }}">
-                                <i class="fas fa-edit text-gray-300"></i>
+                                <i class="fas fa-plus-circle"></i>
                             </a>
                                 @csrf
                                 @method('DELETE')
@@ -415,7 +415,7 @@
         $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            alert(href);
+            // alert(href);
             $.ajax({
                 url: href,
                 beforeSend: function() {
@@ -429,11 +429,11 @@
                 complete: function() {
                     $('#loader').hide();
                 },
-                // error: function(jqXHR, testStatus, error) {
-                //     console.log(error);
-                //     alert("Page " + href + " cannot open. Error:" + error);
-                //     $('#loader').hide();
-                // },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
                 timeout: 8000
             })
         });
