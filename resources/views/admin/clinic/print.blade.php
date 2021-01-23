@@ -203,12 +203,12 @@
        </div>
        <div class="row" id="img-container">
            <img src="{{ asset('./icon.png') }}" alt="image" width="100px"><br>
-           <label style="font-size: 18px;">*ပုဂ္ဂလိက{{$clinic_history->viewLicenceType->lic_name}}လုပ်ငန်းလိုင်စင်*</label>
+           <label style="font-size: 18px;">" ပုဂ္ဂလိက {{$clinic_history->viewLicenceType->lic_name}}လုပ်ငန်းလိုင်စင်"</label>
        </div>
        <div style="margin-top: 20px;margin-left: 70px;">
-           <label style="font-size: 18px;margin-left: 40px;">ပုဂ္ဂလိကကျန်းမာရေးလုပ်ငန်းဆိုင်ရာ နည်းဥအဒေ {{$clinic_history->viewLicenceType->rule_no}} နည်းဥပဒေခွဲ(ခ)အရ ဖော်ပြပါ</label><br>
+           <label style="font-size: 18px;margin-left: 40px;">ပုဂ္ဂလိကကျန်းမာရေးလုပ်ငန်းဆိုင်ရာ နည်းဥပဒေ {{$clinic_history->viewLicenceType->rule_no}}၊ နည်းဥပဒေခွဲ(ခ)အရ ဖော်ပြပါ</label><br>
            <label style="font-size: 18px;">ပုဂ္ဂိုအား ပြည်ထောင်စုနယ်မြေ၊ နေပြည်တော်၊ <span
-                        style="text-decoration: underline;">{{$clinic_history->viewTownship->tsh_name_mm}} {{$clinic->address}}</span> တွင် {{$clinic->clinic_name}} အမည်ပါ {{$clinic_history->viewSubLicence->sub_lic_name}} လုပ်ငန်းအား လုပ်ကိုင်ခွင့်ပြု၍  ဤလုပ်ငန်းလိုင်စင်ကို ထုတ်ပေးလိုက်သည်။</label>
+                        style="text-decoration: underline;">{{$clinic_history->viewTownship->tsh_name_mm}} {{$clinic->address}}</span> တွင် " {{$clinic->clinic_name}} " အမည်ပါ {{$clinic_history->viewSubLicence->sub_lic_name}} လုပ်ငန်းအား လုပ်ကိုင်ခွင့်ပြု၍  ဤလုပ်ငန်းလိုင်စင်ကို ထုတ်ပေးလိုက်သည်။</label>
        </div>
        <div>
            <p style="text-align: center;font-size: 18px;">လိုင်စင်ခွင့်ပြုချက်ရရှိသူ</p>
@@ -268,12 +268,12 @@
                {!! QrCode::size(100)->generate(URL::to('/').'/qr/'.$hashids); !!}
            </div>
            <div class="col-md-9" id="header" style="margin-top: 50px;width: 75%;">
-               <label style="font-size: 18px;">အတွင်းရေးမှူး</label>
-               <label style="font-size: 18px;">နေပြည်တော်ပုဂ္ဂလိကကျန်းမာရေးဆိုင်ရာကြီးကြပ်ရေးကော်မတီ</label>
-               <label style="font-size: 18px;">ပြည်ထောင်စုနယ်မြေ၊နေပြည်တော်</label>
+               <label style="font-size: 17px;">အတွင်းရေးမှူး</label>
+               <label style="font-size: 17px;">နေပြည်တော်ပုဂ္ဂလိကကျန်းမာရေးဆိုင်ရာကြီးကြပ်ရေးကော်မတီ</label>
+               <label style="font-size: 17px;">ပြည်ထောင်စုနယ်မြေ၊နေပြည်တော်</label>
            </div>
        </div>
-       <div class="row" style="margin-top: 20px;">
+       <div class="row" style="margin-top: 20px; ">
            <label style="font-size: 14px;">(သက်တမ်းတိုးလျှောက်ထားလိုပါက လိုင်စင်သက်တမ်းမကုန်ဆုံးမီ အနည်းဆုံး ရက်ပေါင်း ၆၀ ကြိုတင်၍ လျှောက်ထားရမည်။)</label>
        </div>
        <div style="margin-top: 30px;">
