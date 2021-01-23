@@ -38,9 +38,13 @@ class ClinicController extends Controller
         if ($request->name != '') {
             $clinics = $clinics->where('clinic_name','like','%'.$request->name.'%')->orwhere('owner','like','%'.$request->name.'%');
         }
-
         $count = $clinics->count();
-        $clinics = $clinics->orderBy('created_at','desc')->paginate(10);
+
+        if (auth()->user()->tsh_id != null) {
+          $clinics = $clinics->where('tsh_id',auth()->user()->tsh_id);
+        }
+
+        $clinics = $clinics->with('viewHistory')->orderBy('created_at','desc')->paginate(10);
 
         return view('admin.clinic.index',compact('clinics','count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -52,10 +56,13 @@ class ClinicController extends Controller
      */
     public function create()
     {
+        
         $townships = Township::all();
+        $township = Township::find(auth()->user()->tsh_id);
+       
         $licence_types = LicenceType::all();
         $sub_licences = SubLicenceType::all();
-        return view('admin.clinic.create',compact('townships','licence_types','sub_licences'));
+        return view('admin.clinic.create',compact('townships','licence_types','sub_licences','township'));
     }
 
     /**
@@ -105,6 +112,7 @@ class ClinicController extends Controller
                         'nrc'=>$request->nrc,
                         'address'=>$request->owner_address,
                         'phone'=>$request->ph_no,
+                        'tsh_id'=>$request->tsh_id,
                         'path'=>$path,
                         'owner_photo'=>$photo
                     ]
@@ -189,11 +197,13 @@ class ClinicController extends Controller
         $licence_types = LicenceType::all();
         $sub_licences = SubLicenceType::all();
 
+        $township = Township::find(auth()->user()->tsh_id);
+
         $clinic_photos = Clinic_Photo::where('clinic_id',$id)->get();
         $clinic_histories = ClinicHistory::where('clinic_id',$id)->get();
         $clinic_history = $clinic_histories[0];
 
-        return view('admin.clinic.edit',compact('clinic','clinic_photos','townships','licence_types','sub_licences','clinic_history'));
+        return view('admin.clinic.edit',compact('clinic','clinic_photos','townships','licence_types','sub_licences','clinic_history','township'));
     }
 
     /**
@@ -250,6 +260,7 @@ class ClinicController extends Controller
                 'nrc'=>$request->nrc,
                 'address'=>$request->owner_address,
                 'phone'=>$request->ph_no,
+                'tsh_id'=>$request->tsh_id,
                 'path'=>$path,
                 'owner_photo'=>$photo
             ]

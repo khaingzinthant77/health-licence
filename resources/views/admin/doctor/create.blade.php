@@ -24,6 +24,7 @@
                         </div>    
                    </div>
                    <br>
+                   @if(auth()->user()->tsh_id == null)
                    <div class="row">
                        <label class="col-md-4 unicode">ဆေးခန်း အမည်*</label>
                         <div class="col-md-7 {{ $errors->first('clinic_id', 'has-error') }}">
@@ -37,6 +38,21 @@
                          
                         </div>    
                    </div><br>
+                   @else
+                   <div class="row">
+                       <label class="col-md-4 unicode">ဆေးခန်း အမည်*</label>
+                        <div class="col-md-7 {{ $errors->first('clinic_id', 'has-error') }}">
+                            
+                            <select class="form-control" name="clinic_id" id="clinic_id">
+                                <option value="">ဆေးခန်း</option>
+                                  @foreach($tsh_clinics as $clinic)
+                                    <option value="{{$clinic->id}}">{{$clinic->clinic_name}}</option>
+                                  @endforeach
+                            </select>
+                         
+                        </div>    
+                   </div><br>
+                   @endif
                    <div class="row">
                        <label class="col-md-4 unicode">ဘွဲ့အမည်*</label>
                         <div class="col-md-7 {{ $errors->first('doc_degree', 'has-error') }}">

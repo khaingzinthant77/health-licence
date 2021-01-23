@@ -27,6 +27,18 @@
 {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group {{ $errors->first('tsh_id', 'has-error') }}" >
+             <strong>Township:</strong>
+            <select class="form-control col-md-12 eng_text" name="tsh_id">
+                <option value="">Select Township</option>
+                @foreach($townships as $tosnship)
+                <option  value="{{ $tosnship->id }}" {{($user->tsh_id == $tosnship->id)?'selected':''}}>{{ $tosnship->tsh_name_en }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Name:</strong>
             {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}

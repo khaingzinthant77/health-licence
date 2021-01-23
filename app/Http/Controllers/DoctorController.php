@@ -46,7 +46,8 @@ class DoctorController extends Controller
     public function create()
     {
         $clinics = Clinic::all();
-        return view('admin.doctor.create',compact('clinics'));
+        $tsh_clinics = Clinic::where('tsh_id',auth()->user()->tsh_id)->get();
+        return view('admin.doctor.create',compact('clinics','tsh_clinics'));
     }
 
     /**
@@ -101,8 +102,10 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $clinics = Clinic::all();
+        $tsh_clinics = Clinic::where('tsh_id',auth()->user()->tsh_id)->get();
+
         $doctor = Doctor::find($id);
-        return view('admin.doctor.edit',compact('doctor','clinics'));
+        return view('admin.doctor.edit',compact('doctor','clinics','tsh_clinics'));
     }
 
     /**

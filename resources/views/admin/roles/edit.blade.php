@@ -2,14 +2,14 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
+        <!-- <div class="pull-left">
             <p style="font-size:18px;">Edit Role</p>
-        </div>
+        </div> -->
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+            <a class="btn btn-primary btn-sm" href="{{ route('roles.index') }}"> Back</a>
         </div>
     </div>
-</div>
+</div><br>
 
 
 @if (count($errors) > 0)

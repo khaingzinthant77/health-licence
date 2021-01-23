@@ -78,6 +78,8 @@
                          
                         </div>    
                     </div><br>
+
+                    @if(auth()->user()->tsh_id == null)
                     <div class="row">
                       <div class="col-md-3">
                             <h6 style="font-size:15px;">မြို့နယ်*</h6>
@@ -91,6 +93,17 @@
                             </select>
                           </div>
                     </div><br>
+                    @else
+                    <div class="row">
+                      <div class="col-md-3">
+                            <h6 style="font-size:15px;">မြို့နယ်*</h6>
+                        </div>
+                        <div class="col-md-7 {{ $errors->first('tsh_name', 'has-error') }}">
+                            <input type="text" name="tsh_name" id="tsh_name" value="{{ old('tsh_name',$township->tsh_name_mm) }}" class="form-control unicode" readonly="readonly">
+                            <input type="hidden" name="tsh_id" value="{{$township->id}}">
+                          </div>
+                    </div><br>
+                    @endif
                     <div class="row">
                       <div class="col-md-3">
                             <h6 style="font-size:15px;">လုပ်ငန်းတည်နေရာ*</h6>

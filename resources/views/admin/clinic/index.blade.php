@@ -35,6 +35,7 @@
                 <thead>
                 <tr>
                     <th>စဉ်</th>
+                    <th>မြို့နယ်များ</th>  
                      <th>ဆေးခန်းအမည်</th>
                      <th>ဆေးခန်း တည်နေရာ</th> 
                      <th>ပိုင်ရှင်အမည်</th>
@@ -43,13 +44,18 @@
                     <!-- <th class="unicode">Action</th> -->
                 </tr>
                 </thead>
+
             @if(count($clinics)>0)
             @foreach($clinics as $clinic)
+
                 <tr class="table-tr" data-url="{{ route('clinic.show',$clinic->id) }}">
-                    <td class="unicode">{{++$i}}</td>
-                    <td class="unicode">{{$clinic->clinic_name}}</td>
+                    <td>{{++$i}}</td>
+                   
+                    <td>{{$clinic->viewTownship->tsh_name_mm}}</td>
+                    
+                    <td>{{$clinic->clinic_name}}</td>
                     <td>{{$clinic->clinic_address}}</td>
-                    <td class="unicode">{{$clinic->owner}}</td>
+                    <td>{{$clinic->owner}}</td>
                    <td>{{$clinic->phone}}</td>
                    <!-- <td>
                        <img src="{{ asset($clinic->path.$clinic->owner_photo) }}" alt="photo" width="100px">
@@ -59,7 +65,7 @@
             @endforeach
              @else
             <tr align="center">
-                  <td colspan="5">No Data!</td>
+                  <td colspan="6">No Data!</td>
             </tr>
             @endif
             </table>

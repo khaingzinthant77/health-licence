@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $townships = Township::with('clinics')->get();
+        // dd($townships);
         return view('dashboard',compact('townships'));
     }
 }
