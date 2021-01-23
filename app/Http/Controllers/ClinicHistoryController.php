@@ -44,7 +44,11 @@ class ClinicHistoryController extends Controller
         if ($request->tsh_id) {
             $histories = $histories->where('townships.id',$request->tsh_id);
         }
-           
+        
+        if (auth()->user()->tsh_id != null) {
+          $histories = $histories->where('clinic_histories.tsh_id',auth()->user()->tsh_id);
+        }
+
         $count = $histories->count();
         $histories = $histories->orderBy('clinic_histories.created_at','asc')->paginate(10);
 

@@ -34,19 +34,20 @@ class ClinicController extends Controller
     public function index(Request $request)
     {
         $clinics = new Clinic();
-
+        $townships = Township::all();
+        $township = Township::find(auth()->user()->tsh_id);
         if ($request->name != '') {
             $clinics = $clinics->where('clinic_name','like','%'.$request->name.'%')->orwhere('owner','like','%'.$request->name.'%');
         }
         $count = $clinics->count();
 
         if (auth()->user()->tsh_id != null) {
-          $clinics = $clinics->where('tsh_id',auth()->user()->tsh_id);
+          $clinics = $clinics->where('tsh_id',$township->id);
         }
 
         $clinics = $clinics->with('viewHistory')->orderBy('created_at','desc')->paginate(10);
 
-        return view('admin.clinic.index',compact('clinics','count'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('admin.clinic.index',compact('clinics','count','townships','township'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**

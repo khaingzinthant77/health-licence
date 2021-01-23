@@ -42,28 +42,29 @@
                 <thead>
                 <tr>
                     <th>စဉ်</th>
+                    <th>မြို့နယ်</th>
                      <th>ဆေးခန်းအမည်</th>
                      <th>လိုင်စင်အမည်</th> 
                      <th>လိုင်စင်ခွဲ</th>
-                     <th>လိုင်စင်ခွဲ (အတိုကောက်)</th>
                     <th>လိုင်စင်နံပါတ်</th>
-                    <th>မြို့နယ်</th>
-                    <th>သက်တမ်းကာလ</th>
-                    <!-- <th>ဓါတ်ပုံ</th> -->
-                    <!-- <th class="unicode">Action</th> -->
+                    <th>စတင်ထုတ်ပေးသည့်ရက်စွဲ</th>
+                    <th>Action</th>
+                    <th>သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</th>
+                    
                 </tr>
                 </thead>
             @if(count($histories)>0)
             @foreach($histories as $history)
                 <tr class="table-tr" data-url="">
                     <td>{{++$i}}</td>
+                    <td>{{$history->tsh_name_mm}}</td>
                     <td>{{$history->clinic_name}}</td>
                     <td>{{$history->lic_name}}</td>
                     <td>{{$history->sub_lic_name}}</td>
-                    <td>{{$history->sub_lic_short}}</td>
                     <td>{{$history->lic_no}}</td>
-                   <td>{{$history->tsh_name_mm}}</td>
+                    <td>{{date('d-m-Y',strtotime($history->issue_date))}}</td>
                     <td>{{$history->duration}}</td>
+                    <td>{{date('d-m-Y',strtotime($history->expire_date))}}</td>
                 </tr>
            
             @endforeach
