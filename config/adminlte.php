@@ -267,7 +267,7 @@ return [
             'text' => 'Login User',
             'url'  => 'users',
             'icon' => 'fas fa-user-plus',
-            'permission'=>'register-list',
+            'permission'=>'user-list',
         ],
         [
             'text' => 'Roles',
