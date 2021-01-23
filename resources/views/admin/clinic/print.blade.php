@@ -265,7 +265,7 @@
        <div class="row" style="width: 100%">
            <div class="col-md-3" align="right" style="margin-top: 20px;">
                <!-- <input type="text" name="" style="width: 100px;height: 100px;margin-top: 20px;margin-left: 70px;"> -->
-               {!! QrCode::size(100)->generate(URL::to('/').'/'.$hashids); !!}
+               {!! QrCode::size(100)->generate(URL::to('/').'/qr/'.$hashids); !!}
            </div>
            <div class="col-md-9" id="header" style="margin-top: 50px;width: 75%;">
                <label style="font-size: 18px;">အတွင်းရေးမှူး</label>

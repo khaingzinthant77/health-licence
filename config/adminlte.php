@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => 'လုပ်ငန်းလိုင်စင်',
+    'logo' => 'MOHS(NPW)',
     'logo_img' => 'vendor/adminlte/dist/img/icon.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -232,7 +232,7 @@ return [
         ],
     
         [
-            'text'        => 'လုပ်ငန်းလိုင်စင်များ',
+            'text'        => 'ကျန်းမာရေးလုပ်ငန်းများ',
             'url'         => 'clinic',
             'icon'        => 'fas fa-clinic-medical',
             'permission'=>'clinic-list'
