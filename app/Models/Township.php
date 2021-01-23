@@ -12,6 +12,7 @@ class Township extends Model
     protected $fillable = ['tsh_name_en','tsh_name_mm','tsh_short_code'];
 
      public function clinics(){
+     	
         return $this->hasMany('App\Models\ClinicHistory','tsh_id');
     }
 }
