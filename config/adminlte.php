@@ -227,7 +227,7 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
-            'icon'        => 'fas fa-clinic-medical',
+            'icon'        => 'fas fa-tachometer-alt',
             'permission'=>'dashboard'
         ],
     
