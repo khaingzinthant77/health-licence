@@ -6,11 +6,11 @@
 
 @charset "UTF-8";
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-html {
+/*html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
-}
+}*/
 
 body {
   margin: 0;
@@ -131,7 +131,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  
   font-size: 1em;
 }
 
@@ -327,7 +327,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ 
   font-size: 1rem;
   line-height: 1.5;
   color: #373a3c;
@@ -476,7 +476,6 @@ output {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -685,9 +684,7 @@ mark,
 code,
 kbd,
 pre,
-samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-}
+
 
 code {
   padding: .2rem .4rem;
@@ -5193,7 +5190,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
   font-size: .85rem;
   font-style: normal;
   font-weight: normal;
@@ -5302,7 +5299,7 @@ button.close {
   display: block;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
   font-size: .85rem;
   font-style: normal;
   font-weight: normal;
@@ -5593,7 +5590,6 @@ button.close {
   width: 20px;
   height: 20px;
   margin-top: -10px;
-  font-family: serif;
   line-height: 1;
 }
 
