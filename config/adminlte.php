@@ -232,7 +232,7 @@ return [
         ],
     
         [
-            'text'        => 'လုပ်ငန်းလိုင်စင်များ',
+            'text'        => 'ကျန်းမာရေးလုပ်ငန်းများ',
             'url'         => 'clinic',
             'icon'        => 'fas fa-clinic-medical',
             'permission'=>'clinic-list'

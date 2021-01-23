@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'လုပ်ငန်းလိုင်စင်များ')
+@section('title', 'ကျန်းမာရေးလုပ်ငန်းများ')
 
 @section('content_header')
-    <h5 style="color: blue;">လုပ်ငန်းလိုင်စင်များ</h5>
+    <h5 style="color: blue;">ကျန်းမာရေးလုပ်ငန်းများ</h5>
     <script src=" {{ asset('toasterjquery.js') }}" ></script>
     <link rel="stylesheet" type="text/css" href="{{asset('toasterbootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('toastermin.css')}}">
