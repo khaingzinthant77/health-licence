@@ -23,7 +23,7 @@
                             <h4 align="center">{{ $township->tsh_name_mm }}</h4>
                             <br/>
                             <div class="row">
-                                <div class="col-md-6">လုပ်ငန်းလိုင်စင်</div>
+                                <div class="col-md-6">ကျန်းမာရေးလုပ်ငန်း</div>
                                 <div class="col-md-6" style="text-align: right">{{ $township->clinics->count() }}</div>
                             </div>
                             <br>
