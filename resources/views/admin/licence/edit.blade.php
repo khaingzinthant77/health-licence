@@ -49,7 +49,7 @@
         	<div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6 style="font-weight:bold;font-size:15px;">စည်းမျဉ်းနံပါတ်</h6>
+                                    <h6 style="font-weight:bold;font-size:15px;">နည်းဥပဒေအမှတ်</h6>
                                 </div>
 
                                 <div class="col-md-8">
