@@ -19,6 +19,7 @@ class CreateClinicHistoriesTable extends Migration
             $table->integer('lic_id');
             $table->integer('sub_lic_id');
             $table->integer('tsh_id');
+            $table->integer('login_id');
             $table->string('lic_no');
             $table->date('issue_date');
             $table->integer('duration');

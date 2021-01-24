@@ -173,7 +173,7 @@
                             <h6 style="font-size:15px;">သက်တမ်းကာလ*</h6>
                         </div>
                         <div class="col-md-7 {{ $errors->first('duration', 'has-error') }}">
-                            <input type="text" name="duration" id="duration" value="{{ old('duration') }}" class="form-control unicode" placeholder="၂နှစ်">
+                            <input type="number" name="duration" id="duration" value="{{ old('duration') }}" class="form-control unicode" placeholder="2">
                          
                         </div>    
                     </div><br>

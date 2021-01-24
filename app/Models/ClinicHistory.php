@@ -9,7 +9,7 @@ class ClinicHistory extends Model
 {
     use HasFactory;
     protected $table = "clinic_histories";
-    protected $fillable = ['clinic_id','lic_id','sub_lic_id','tsh_id','lic_no','issue_date','duration','expire_date'];
+    protected $fillable = ['clinic_id','lic_id','sub_lic_id','tsh_id','lic_no','issue_date','duration','expire_date','login_id'];
 
     public function viewClinic()
     {
@@ -29,5 +29,10 @@ class ClinicHistory extends Model
     public function viewTownship()
     {
     	return $this->hasOne('App\Models\Township','id','tsh_id');
+    }
+
+    public function viewLoginUser()
+    {
+        return $this->hasOne('App\Models\User','id','login_id');
     }
 }

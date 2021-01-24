@@ -45,12 +45,13 @@
                     <th>မြို့နယ်</th>
                      <th>ဆေးခန်းအမည်</th>
                      <th>လိုင်စင်အမည်</th> 
-                     <th>လိုင်စင်ခွဲ</th>
+                     <!-- <th>လိုင်စင်ခွဲ</th> -->
                     <th>လိုင်စင်နံပါတ်</th>
                     <th>စတင်ထုတ်ပေးသည့်ရက်စွဲ</th>
-                    <th>Action</th>
+                    <th>သက်တမ်းကာလ</th>
                     <th>သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</th>
-                    
+                    <th>ထည့်သွင်းသည့်နေ့စွဲ</th>
+                    <th>Approved By</th>
                 </tr>
                 </thead>
             @if(count($histories)>0)
@@ -60,11 +61,19 @@
                     <td>{{$history->tsh_name_mm}}</td>
                     <td>{{$history->clinic_name}}</td>
                     <td>{{$history->lic_name}}</td>
-                    <td>{{$history->sub_lic_name}}</td>
+                    <!-- <td>{{$history->sub_lic_name}}</td> -->
                     <td>{{$history->lic_no}}</td>
-                    <td>{{date('d-m-Y',strtotime($history->issue_date))}}</td>
-                    <td>{{$history->duration}}</td>
-                    <td>{{date('d-m-Y',strtotime($history->expire_date))}}</td>
+                    <td>
+                        {{ en_to_mm(changeDateFormate($history->issue_date,'d-m-Y') )}}
+                    </td>
+                    <td>{{en_to_mm($history->duration)}}</td>
+                    <td>{{ en_to_mm(changeDateFormate($history->expire_date,'d-m-Y') )}}</td>
+                    <?php 
+
+                        $created_at = date('Y-m-d',strtotime($history->created_at));
+                     ?>
+                    <td>{{ en_to_mm(changeDateFormate($created_at,'d-m-Y') )}}</td>
+                    <td>{{$history->name}}</td>
                 </tr>
            
             @endforeach

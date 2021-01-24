@@ -150,7 +150,8 @@ class ClinicController extends Controller
                             'lic_no'=>$request->licence_no,
                             'issue_date'=>date('Y-m-d', strtotime($request->issue_date)),
                             'duration'=>$request->duration,
-                            'expire_date'=>date('Y-m-d', strtotime($request->expire_date))
+                            'expire_date'=>date('Y-m-d', strtotime($request->expire_date)),
+                            'login_id'=>auth()->user()->id
                         ]);
 
                         DB::commit();

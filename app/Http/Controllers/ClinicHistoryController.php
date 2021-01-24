@@ -28,6 +28,7 @@ class ClinicHistoryController extends Controller
                                     ->leftJoin('licence_types','licence_types.id','=','clinic_histories.lic_id')
                                     ->leftJoin('sub_licence_types','sub_licence_types.id','=','clinic_histories.sub_lic_id')
                                     ->leftJoin('townships','townships.id','=','clinic_histories.tsh_id')
+                                    ->leftJoin('users','users.id','=','clinic_histories.login_id')
                                         ->select(
                                             'clinic_histories.id',
                                             'clinics.clinic_name',
@@ -36,7 +37,11 @@ class ClinicHistoryController extends Controller
                                             'sub_licence_types.sub_lic_short',
                                             'clinic_histories.lic_no',
                                             'townships.tsh_name_mm',
-                                            'clinic_histories.duration'
+                                            'clinic_histories.duration',
+                                            'clinic_histories.issue_date',
+                                            'clinic_histories.expire_date',
+                                            'clinic_histories.created_at',
+                                            'users.name'
                                         );
         if ($request->name != '') {
             $histories = $histories->where('clinics.clinic_name','like','%'.$request->name.'%')->orwhere('clinic_histories.lic_no','like','%'.$request->name.'%');
@@ -123,7 +128,7 @@ class ClinicHistoryController extends Controller
 
     public function extend_licence(Request $request)
     {
-
+        // dd($request->all());
         $rules = [
             'issue_date'=>'required',
             'duration'=>'required',
@@ -141,7 +146,8 @@ class ClinicHistoryController extends Controller
             'lic_no'=>$request->lic_no,
             'issue_date'=>date('Y-m-d', strtotime($request->issue_date)),
             'duration'=>$request->duration,
-            'expire_date'=>date('Y-m-d', strtotime($request->expire_date))
+            'expire_date'=>date('Y-m-d', strtotime($request->expire_date)),
+            'login_id'=>$request->login_id
         ]);
         return redirect()->route('clinic.index')->with('success','Success');
     }

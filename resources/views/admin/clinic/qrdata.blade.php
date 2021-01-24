@@ -100,13 +100,13 @@
       
                                 <tr>
                                   <th scope="row" style="text-align: left;">စတင်ခွင့်ပြုသည့်ရက်စွဲ</th>
-                                  <td>{{date('d-m-Y',strtotime($clinic_history->issue_date))}}</td>
+                                  <td>{{ en_to_mm(changeDateFormate($clinic_history->issue_date,'d-m-Y') )}}</td>
                                   
                                 </tr>
                                 <tr>
                                   <th scope="row" style="text-align: left;">သက်တမ်းကာလ</th>
                                   <td> 
-                                       {{$clinic_history->duration}}
+                                       {{en_to_mm($clinic_history->duration)}}
                                        
                                     </td>
                                   
@@ -114,7 +114,7 @@
                                 <tr>
                                   <th scope="row" style="text-align: left;">သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</th>
                                   <td> 
-                                    {{date('d-m-Y',strtotime($clinic_history->expire_date))}}
+                                    {{ en_to_mm(changeDateFormate($clinic_history->expire_date,'d-m-Y') )}}
                                 </td>
                                   
                                 </tr>

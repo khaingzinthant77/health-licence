@@ -109,9 +109,13 @@
                        <td>{{$histories->viewLicenceType->lic_name}}</td>
                        <td>{{$histories->viewSubLicence->sub_lic_name}}</td>
                        <td>{{$histories->lic_no}}</td>
-                       <td>{{date('d-m-Y',strtotime($histories->issue_date))}}</td>
-                       <td>{{$histories->duration}}</td>
-                       <td>{{date('d-m-Y',strtotime($histories->expire_date))}}</td>
+                       <td>
+                         {{ en_to_mm(changeDateFormate($histories->issue_date,'d-m-Y') )}}
+                       </td>
+                       <td>{{en_to_mm($histories->duration)}}</td>
+                       <td>
+                        {{ en_to_mm(changeDateFormate($histories->expire_date,'d-m-Y')  )}}
+                       </td>
                     </tr>
                 
                 </table>
@@ -232,7 +236,7 @@
 
     </div>
     <div class="modal fade" id="mediumModal" role="dialog" aria-labelledby="mediumModalLabel"
-        aria-hidden="true">
+        aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

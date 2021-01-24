@@ -71,12 +71,13 @@
         </div>
         <div class="col-md-7 {{ $errors->first('issue_date', 'has-error') }}">
           <input type="text" name="issue_date" id="issue_date" class="form-control unicode" placeholder="01-08-2020"
-          value="{{ old('issue_date') }}">
+          value="{{ old('issue_date') }}" required="required">
           <input type="hidden" name="clinic_id" value="{{$clinic_history->clinic_id}}">
           <input type="hidden" name="lic_id" value="{{$clinic_history->lic_id}}">
           <input type="hidden" name="sub_lic_id" value="{{$clinic_history->sub_lic_id}}">
           <input type="hidden" name="tsh_id" value="{{$clinic_history->tsh_id}}">
           <input type="hidden" name="lic_no" value="{{$clinic_history->lic_no}}">
+          <input type="hidden" name="login_id" value="{{auth()->user()->id}}">
         </div>
       </div><br>
       <div class="row">
@@ -85,7 +86,7 @@
         </div>
         <div class="col-md-7 {{ $errors->first('duration', 'has-error') }}">
           <input type="text" name="duration" id="duration" class="form-control unicode" placeholder="၂ နှစ်"
-          value="{{ old('duration') }}">
+          value="{{ old('duration') }}" required="required">
         </div>
       </div><br>
       <div class="row">
@@ -94,7 +95,7 @@
         </div>
         <div class="col-md-7 {{ $errors->first('expire_date', 'has-error') }}">
           <input type="text" name="expire_date" id="expire_date" class="form-control unicode" placeholder="01-08-2020"
-          value="{{ old('expire_date') }}">
+          value="{{ old('expire_date') }}" required="required">
         </div>
       </div><br>
       <div class="row">

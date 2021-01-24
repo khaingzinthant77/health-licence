@@ -243,7 +243,7 @@
                <label style="font-size: 18px;">စတင်ခွင့်ပြုသည့်ရက်စွဲ</label>
            </div>
            <div>
-               <label style="font-size: 18px;">{{date('d-m-Y',strtotime($clinic_history->issue_date))}}</label>
+               <label style="font-size: 18px;">{{ en_to_mm(changeDateFormate($clinic_history->issue_date,'d-m-Y') )}}</label>
            </div>
        </div>
        <div class="row" style="margin-left: 70px;">
@@ -251,7 +251,7 @@
                <label style="font-size: 18px;">သက်တမ်းကာလ</label>
            </div>
            <div>
-               <label style="font-size: 18px;">{{$clinic_history->duration}}</label>
+               <label style="font-size: 18px;">{{en_to_mm($clinic_history->duration)}}</label>
            </div>
        </div>
        <div class="row" style="margin-left: 70px;">
@@ -259,7 +259,7 @@
                <label style="font-size: 18px;">သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</label>
            </div>
            <div>
-               <label style="font-size: 18px;">{{date('d-m-Y',strtotime($clinic_history->expire_date))}}</label>
+               <label style="font-size: 18px;">{{ en_to_mm(changeDateFormate($clinic_history->expire_date,'d-m-Y') )}}</label>
            </div>
        </div>
        <div class="row" style="width: 100%">
