@@ -46,7 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::get('/qr/{id}','App\Http\Controllers\ClinicController@qrData')->name('qr.data');
 	Route::get('licence/extend/{id}','App\Http\Controllers\ClinicController@extend')->name('licence_extend');
 	Route::post('/extend_licence','App\Http\Controllers\ClinicHistoryController@extend_licence')->name('extend.store');
-
+	// Route::resource('change-password', 'App\Http\Controllers\ChangePasswordController');
+	 Route::get('change-password','App\Http\Controllers\HomeController@changePassword')->name('change-password.changePassword'); 
+	 Route::post('/password','App\Http\Controllers\HomeController@resetPassword')->name('password.resetPassword');
 });
 Auth::routes();
 

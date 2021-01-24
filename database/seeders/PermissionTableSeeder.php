@@ -59,6 +59,9 @@ class PermissionTableSeeder extends Seeder
            'township-show',
            'township-edit',
            'township-delete',
+
+           'change-password',
+
         ];
      
         foreach ($permissions as $permission) {
