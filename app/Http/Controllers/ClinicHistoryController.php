@@ -43,12 +43,28 @@ class ClinicHistoryController extends Controller
                                             'clinic_histories.created_at',
                                             'users.name'
                                         );
+                                        
         if ($request->name != '') {
             $histories = $histories->where('clinics.clinic_name','like','%'.$request->name.'%')->orwhere('clinic_histories.lic_no','like','%'.$request->name.'%');
         }
         if ($request->tsh_id) {
             $histories = $histories->where('townships.id',$request->tsh_id);
         }
+        $check_valid = $request->check_valid;
+        if($check_valid=='1'){ // licence valid
+          $histories = $histories->WhereRaw('(DATEDIFF( clinic_histories.expire_date,  NOW())>60)');
+          }
+
+          // for  licence will expire
+          if($check_valid=='2'){
+              $histories = $histories->WhereRaw('(DATEDIFF(clinic_histories.expire_date, NOW())<60) AND (DATEDIFF( clinic_histories.expire_date,  NOW())>0)');
+          }
+
+          //for licence expired
+          if($check_valid=='3'){ 
+              $histories = $histories->WhereRaw('(DATEDIFF( clinic_histories.expire_date, NOW())<0)');
+          }
+
         
         if (auth()->user()->tsh_id != null) {
           $histories = $histories->where('clinic_histories.tsh_id',auth()->user()->tsh_id);
