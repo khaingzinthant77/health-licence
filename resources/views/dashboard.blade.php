@@ -15,6 +15,7 @@
     <div class="content">
     	<!--  <h5>Clinic by Townships</h5> -->
     	  <div class="row">
+            @if(auth()->user()->tsh_id == null)
             @foreach ($townships as $i=>$township)
                 <div class="col-md-3">
                     <div class="card text-white" style="background-color: {!! $colors[$i] !!}">
@@ -31,7 +32,36 @@
                         </a>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
+                @else
+               <?php
+               $township_id = auth()->user()->tsh_id;
+               foreach ($townships as $i=>$value) {
+                   if ($value->id == $township_id) {
+                      $name = $value->tsh_name_mm;
+                      $count = $value->clinics->count();
+                   }
+               }
+
+               ?>
+                <div class="col-md-3">
+                    <div class="card text-white" style="background-color: {!! $colors[$i] !!}">
+                        <a href="{{  url('clinic?tsh_id='.$township_id) }}" class="text-white">
+                        <div class="card-body">
+                            <h4 align="center">{{ $name }}</h4>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6">ကျန်းမာရေးလုပ်ငန်း</div>
+                                <div class="col-md-6" style="text-align: right">{{  $count }}</div>
+                            </div>
+                            <br>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+           
+                @endif
+           
         </div>
         <br>
     </div>
