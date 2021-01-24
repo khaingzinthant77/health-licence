@@ -18,7 +18,7 @@
             @foreach ($townships as $i=>$township)
                 <div class="col-md-3">
                     <div class="card text-white" style="background-color: {!! $colors[$i] !!}">
-                        <a href="{{  url('history?tsh_id='.$township->id) }}" class="text-white">
+                        <a href="{{  url('clinic?tsh_id='.$township->id) }}" class="text-white">
                         <div class="card-body">
                             <h4 align="center">{{ $township->tsh_name_mm }}</h4>
                             <br/>

@@ -13,6 +13,6 @@ class Township extends Model
 
      public function clinics(){
      	
-        return $this->hasMany('App\Models\ClinicHistory','tsh_id');
+        return $this->hasMany('App\Models\Clinic','tsh_id');
     }
 }
