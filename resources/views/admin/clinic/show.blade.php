@@ -194,7 +194,7 @@
                 @endif
                 </table>
             <div align="center">
-                <p style="color: black;">Total - 1</p>
+                <p style="color: black;">Total - {{$doc_count}}</p>
           </div>
        </div>
             </div>

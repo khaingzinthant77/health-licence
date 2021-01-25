@@ -198,8 +198,9 @@ class ClinicController extends Controller
 
         $doctors = Doctor::where('clinic_id',$id)->get();
         // dd($history);
+        $doc_count = $doctors->count();
         $count = $histories->count();
-        return view('admin.clinic.show',compact('clinic','clinic_photos','histories','count','doctors'));
+        return view('admin.clinic.show',compact('clinic','clinic_photos','histories','count','doctors','doc_count'));
     }
 
     /**

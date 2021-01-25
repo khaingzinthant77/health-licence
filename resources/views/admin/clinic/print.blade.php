@@ -181,7 +181,7 @@
         display: block;
         /*margin-top: 10px;*/
       }
-   
+    
     </style>
 
 </head>
@@ -251,7 +251,7 @@
                <label style="font-size: 18px;">သက်တမ်းကာလ</label>
            </div>
            <div>
-               <label style="font-size: 18px;">{{en_to_mm($clinic_history->duration)}}</label>
+               <label style="font-size: 18px;">{{en_to_mm($clinic_history->duration)}}နှစ်</label>
            </div>
        </div>
        <div class="row" style="margin-left: 70px;">
