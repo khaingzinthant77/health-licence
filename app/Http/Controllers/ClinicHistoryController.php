@@ -51,20 +51,20 @@ class ClinicHistoryController extends Controller
         if ($request->tsh_id) {
             $histories = $histories->where('townships.id',$request->tsh_id);
         }
-        $check_valid = $request->check_valid;
-        if($check_valid=='1'){ // licence valid
-          $histories = $histories->WhereRaw('(DATEDIFF( clinic_histories.expire_date,  NOW())>60)');
-          }
+        // $check_valid = $request->check_valid;
+        // if($check_valid=='1'){ // licence valid
+        //   $histories = $histories->WhereRaw('(DATEDIFF( clinic_histories.expire_date,  NOW())>60)');
+        //   }
 
-          // for  licence will expire
-          if($check_valid=='2'){
-              $histories = $histories->WhereRaw('(DATEDIFF(clinic_histories.expire_date, NOW())<60) AND (DATEDIFF( clinic_histories.expire_date,  NOW())>0)');
-          }
+        //   // for  licence will expire
+        //   if($check_valid=='2'){
+        //       $histories = $histories->WhereRaw('(DATEDIFF(clinic_histories.expire_date, NOW())<60) AND (DATEDIFF( clinic_histories.expire_date,  NOW())>0)');
+        //   }
 
-          //for licence expired
-          if($check_valid=='3'){ 
-              $histories = $histories->WhereRaw('(DATEDIFF( clinic_histories.expire_date, NOW())<0)');
-          }
+        //   //for licence expired
+        //   if($check_valid=='3'){ 
+        //       $histories = $histories->WhereRaw('(DATEDIFF( clinic_histories.expire_date, NOW())<0)');
+        //   }
 
         
         if (auth()->user()->tsh_id != null) {
@@ -146,6 +146,7 @@ class ClinicHistoryController extends Controller
     public function extend_licence(Request $request)
     {
         // dd($request->all());
+        // dd(date('Y-m-d', strtotime($request->issue_date)));
         $rules = [
             'issue_date'=>'required',
             'duration'=>'required',

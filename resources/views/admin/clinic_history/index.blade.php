@@ -68,17 +68,8 @@
                 </thead>
             @if(count($histories)>0)
             @foreach($histories as $history)
-            <?php 
-                        $now = time(); // or your date as well
-                        $expdate = strtotime($history->expire_date);
-                        $datediff = $expdate - $now;
-                        $days = round($datediff / (60 * 60 * 24));
-
-                        $expired = $now - $expdate;
-                        $expireddate = round($datediff / (60 * 60 * 24));
-                ?>
-
-                <tr class="table-tr" @if($days<60 && $days>0) style="color:#f39c13;" @elseif($expireddate<0) style="color:red;"  @endif>
+            
+                <tr class="table-tr" >
                     <td>{{++$i}}</td>
                     <td>{{$history->tsh_name_mm}}</td>
                     <td>{{$history->clinic_name}}</td>
