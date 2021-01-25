@@ -45,6 +45,21 @@ class ClinicController extends Controller
           $clinics = $clinics->where('tsh_id',$township->id);
         }
 
+        $check_valid = $request->check_valid;
+        if($check_valid=='1'){ // licence valid
+          $clinics = $clinics->WhereRaw('(DATEDIFF( clinics.expire_date,  NOW())>60)');
+          }
+
+          // for  licence will expire
+          if($check_valid=='2'){
+              $clinics = $clinics->WhereRaw('(DATEDIFF(clinics.expire_date, NOW())<60) AND (DATEDIFF( clinics.expire_date,  NOW())>0)');
+          }
+
+          //for licence expired
+          if($check_valid=='3'){ 
+              $clinics = $clinics->WhereRaw('(DATEDIFF( clinics.expire_date, NOW())<0)');
+          }
+
         $clinics = $clinics->with('viewHistory')->orderBy('created_at','desc')->paginate(10);
 
         return view('admin.clinic.index',compact('clinics','count','townships','township'))->with('i', (request()->input('page', 1) - 1) * 10);
