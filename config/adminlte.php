@@ -287,7 +287,7 @@ return [
             'url'  => 'change-password',
             'icon' => 'fa fa-lock',
             'permission'=>'change-password'
-        ],
+        ]
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

@@ -94,6 +94,7 @@
             font-size: 13px !important;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
 
 </head>
 

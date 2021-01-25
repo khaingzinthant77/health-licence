@@ -31,7 +31,7 @@
 
             {{-- Card Header --}}
             @hasSection('auth_header')
-                <div class="card-header {{ config('adminlte.classes_auth_header', '') }}">
+                <div class="card-header" style="background-color: #2a3c66; color:#ffffff;">
                     <h3 class="card-title float-none text-center">
                         @yield('auth_header')
                     </h3>
