@@ -115,7 +115,8 @@ class ClinicController extends Controller
                         'phone'=>$request->ph_no,
                         'tsh_id'=>$request->tsh_id,
                         'path'=>$path,
-                        'owner_photo'=>$photo
+                        'owner_photo'=>$photo,
+                        'expire_date'=>date('Y-m-d', strtotime($request->expire_date))
                     ]
                     );
                     if ($request->clinic_photo != null) {
@@ -265,7 +266,8 @@ class ClinicController extends Controller
                 'phone'=>$request->ph_no,
                 'tsh_id'=>$request->tsh_id,
                 'path'=>$path,
-                'owner_photo'=>$photo
+                'owner_photo'=>$photo,
+                'expire_date'=>date('Y-m-d', strtotime($request->expire_date))
             ]
             );
 
@@ -296,6 +298,7 @@ class ClinicController extends Controller
                                 'clinic_id'=>$id,
                                 'path'=>$path,
                                 'clinic_photo'=>$clinic_photos,
+
                             ]);
                             // dd($image);
                         }

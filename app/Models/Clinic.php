@@ -9,7 +9,7 @@ class Clinic extends Model
 {
     use HasFactory;
     protected $table = "clinics";
-    protected $fillable = ['clinic_name','clinic_address','owner','nrc','address','phone','path','owner_photo','tsh_id'];
+    protected $fillable = ['clinic_name','clinic_address','owner','nrc','address','phone','path','owner_photo','tsh_id','expire_date'];
 
     public function viewHistory()
     {
