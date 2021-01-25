@@ -101,6 +101,7 @@
                         <th>သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</th>
                     </tr>
                     </thead>
+                    @if($histories != null)
                     <tr>
                         
                         <td>{{$histories->viewClinic->clinic_name}}</td>
@@ -117,11 +118,13 @@
                         {{ en_to_mm(changeDateFormate($histories->expire_date,'d-m-Y')  )}}
                        </td>
                     </tr>
-                
+                     @else
+                    <tr align="center">
+                          <td colspan="8">No Data!</td>
+                    </tr>
+                    @endif
                 </table>
-            <div align="center">
-                <p style="color: black;">Total - {{$count}}</p>
-          </div>
+            
        </div>  
             </div>
         </div>

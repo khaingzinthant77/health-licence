@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClinicHistory;
+use App\Models\Clinic;
 use App\Models\Township;
 use Illuminate\Http\Request;
 
@@ -164,6 +165,10 @@ class ClinicHistoryController extends Controller
             'duration'=>$request->duration,
             'expire_date'=>date('Y-m-d', strtotime($request->expire_date)),
             'login_id'=>$request->login_id
+        ]);
+
+        $clinics = Clinic::find($request->clinic_id)->update([
+            'expire_date'=>date('Y-m-d', strtotime($request->expire_date))
         ]);
         return redirect()->route('clinic.index')->with('success','Success');
     }

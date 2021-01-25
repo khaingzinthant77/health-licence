@@ -28,7 +28,7 @@
                                 @endforeach
                             </select> 
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <p style="font-size: 12px;">Search by Licence Expire</p>
                        <select name="check_valid" class="form-control" id="check_valid">
                         
@@ -36,9 +36,9 @@
                            <option value="1" {{ ($check_valid=='1')?'selected':'' }} >သက်တမ်းရှိလိုင်စင်</option>
                            <option value="2" {{ ($check_valid=='2')?'selected':'' }} >သက်တမ်းကုန်မည့်လိုင်စင်</option>
                            <option value="3" {{ ($check_valid=='3')?'selected':'' }} >သက်တမ်းကုန်သည့်လိုင်စင်</option>
-                           <!-- <option value="4" {{ ($check_valid=='4')?'selected':'' }} >စီစစ်နေဆဲယာဉ်</option> -->
+                           <option value="4" {{ ($check_valid=='4')?'selected':'' }} >စီစစ်နေဆဲယာဉ်</option>
                        </select>
-                    </div>
+                    </div> -->
                     </div>
                 </div>
                 <!-- <div class="col-md-2">

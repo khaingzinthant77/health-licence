@@ -24,6 +24,7 @@ class CreateClinicsTable extends Migration
             $table->string('phone');
             $table->string('path');
             $table->string('owner_photo');
+            $table->date('expire_date');
             $table->timestamps();
         });
     }
