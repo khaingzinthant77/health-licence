@@ -18,7 +18,7 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search Keyword...">
+                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search Keyword..." style="font-size: 13px;">
                         </div>
                     </div>
                 </div>
@@ -34,11 +34,11 @@
             <table class="table table-bordered styled-table">
                 <thead>
                 <tr>
-                    <th>စဉ်</th>
-                     <th>ဆရာဝန်အမည်</th>
-                     <th>ဘွဲ့အမည်</th> 
-                     <th>ဆေးခန်းအမည်</th>
-                    <th>ဖုန်းနံပါတ်</th>
+                    <th class="unicode">စဉ်</th>
+                     <th class="unicode">ဆရာဝန်အမည်</th>
+                     <th class="unicode">ဘွဲ့အမည်</th> 
+                     <th class="unicode">ဆေးခန်းအမည်</th>
+                    <th class="unicode">ဖုန်းနံပါတ်</th>
                     <!-- <th>ဓါတ်ပုံ</th> -->
                     <!-- <th class="unicode">Action</th> -->
                 </tr>
@@ -46,11 +46,11 @@
             @if(count($doctors)>0)
             @foreach($doctors as $doctor)
                 <tr class="table-tr" data-url="{{ route('doctor.show',$doctor->id) }}">
-                    <td>1</td>
-                    <td>{{$doctor->doc_name}}</td>
-                    <td>{{$doctor->doc_degree}}</td>
-                    <td>{{$doctor->viewClinic->clinic_name}}</td>
-                   <td>{{$doctor->doc_phone}}</td>
+                    <td class="unicode">{{++$i}}</td>
+                    <td class="unicode">{{$doctor->doc_name}}</td>
+                    <td class="unicode">{{$doctor->doc_degree}}</td>
+                    <td class="unicode">{{$doctor->viewClinic->clinic_name}}</td>
+                   <td class="unicode">{{$doctor->doc_phone}}</td>
                    
                 </tr>
            

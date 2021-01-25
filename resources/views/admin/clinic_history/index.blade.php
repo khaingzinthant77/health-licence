@@ -17,14 +17,14 @@
                     <div class="row">
                         <div class="col-md-2">
                             <p style="font-size: 12px;">Search by keyword</p>
-                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search...">
+                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control size" placeholder="Search...">
                         </div>
                         <div class="col-md-2">
                             <p style="font-size: 12px;">Select Township</p>
-                            <select class="form-control" name="tsh_id" id="tsh_id">
+                            <select class="form-control size" name="tsh_id" id="tsh_id">
                                 <option value="">All</option>
                                 @foreach($townships as $township)
-                                <option value="{{$township->id}}" {{ ($tsh_id == $township->id)?'selected':'' }}>{{$township->tsh_name_mm}}</option>
+                                <option value="{{$township->id}}" {{ ($tsh_id == $township->id)?'selected':'' }} >{{$township->tsh_name_mm}}</option>
                                 @endforeach
                             </select> 
                         </div>
@@ -53,17 +53,17 @@
             <table class="table table-bordered styled-table">
                 <thead>
                 <tr>
-                    <th>စဉ်</th>
-                    <th>မြို့နယ်</th>
-                     <th>ဆေးခန်းအမည်</th>
-                     <th>လိုင်စင်အမည်</th> 
+                    <th class="unicode">စဉ်</th>
+                    <th class="unicode">မြို့နယ်</th>
+                     <th class="unicode">ဆေးခန်းအမည်</th>
+                     <th class="unicode">လိုင်စင်အမည်</th> 
                      <!-- <th>လိုင်စင်ခွဲ</th> -->
-                    <th>လိုင်စင်နံပါတ်</th>
-                    <th>စတင်ထုတ်ပေးသည့်ရက်စွဲ</th>
-                    <th>သက်တမ်းကာလ</th>
-                    <th>သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</th>
-                    <th>ထည့်သွင်းသည့်နေ့စွဲ</th>
-                    <th>Approved By</th>
+                    <th class="unicode">လိုင်စင်နံပါတ်</th>
+                    <th class="unicode">စတင်ထုတ်ပေးသည့်ရက်စွဲ</th>
+                    <th class="unicode">သက်တမ်းကာလ</th>
+                    <th class="unicode">သက်တမ်းကုန်ဆုံးသည့်ရက်စွဲ</th>
+                    <th class="unicode">ထည့်သွင်းသည့်နေ့စွဲ</th>
+                    <th class="unicode">Approved By</th>
                 </tr>
                 </thead>
             @if(count($histories)>0)
@@ -71,22 +71,22 @@
             
                 <tr class="table-tr" >
                     <td>{{++$i}}</td>
-                    <td>{{$history->tsh_name_mm}}</td>
-                    <td>{{$history->clinic_name}}</td>
-                    <td>{{$history->lic_name}}</td>
+                    <td class="unicode">{{$history->tsh_name_mm}}</td>
+                    <td class="unicode">{{$history->clinic_name}}</td>
+                    <td class="unicode">{{$history->lic_name}}</td>
                     <!-- <td>{{$history->sub_lic_name}}</td> -->
-                    <td>{{$history->lic_no}}</td>
-                    <td>
+                    <td class="unicode">{{$history->lic_no}}</td>
+                    <td class="unicode">
                         {{ en_to_mm(changeDateFormate($history->issue_date,'d-m-Y') )}}
                     </td>
-                    <td>{{en_to_mm($history->duration)}}</td>
-                    <td>{{ en_to_mm(changeDateFormate($history->expire_date,'d-m-Y') )}}</td>
+                    <td class="unicode">{{en_to_mm($history->duration)}}နှစ်</td>
+                    <td class="unicode">{{ en_to_mm(changeDateFormate($history->expire_date,'d-m-Y') )}}</td>
                     <?php 
 
                         $created_at = date('Y-m-d',strtotime($history->created_at));
                      ?>
-                    <td>{{ en_to_mm(changeDateFormate($created_at,'d-m-Y') )}}</td>
-                    <td>{{$history->name}}</td>
+                    <td class="unicode">{{ en_to_mm(changeDateFormate($created_at,'d-m-Y') )}}</td>
+                    <td class="unicode">{{$history->name}}</td>
                 </tr>
            
             @endforeach

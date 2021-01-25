@@ -21,12 +21,12 @@
                     <div class="row">
                         <div class="col-md-2">
                             <p style="font-size: 12px;">Search by keyword</p>
-                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search Keyword...">
+                            <input type="text" name="name" id="name" value="{{ old('name',$name) }}" class="form-control" placeholder="Search Keyword..." style="font-size: 13px;">
                         </div>
                         @if(auth()->user()->tsh_id == null)
                         <div class="col-md-2">
                             <p style="font-size: 12px;">Select Township</p>
-                            <select class="form-control" name="tsh_id" id="tsh_id">
+                            <select class="form-control" name="tsh_id" id="tsh_id" style="font-size: 13px;">
                                 <option value="">All</option>
                                 @foreach($townships as $township)
                                 <option value="{{$township->id}}" {{ ($tsh_id == $township->id)?'selected':'' }}>{{$township->tsh_name_mm}}</option>
@@ -35,8 +35,8 @@
                         </div>
                         @endif
                         <div class="col-md-3">
-                            <p style="font-size: 12px;">Search by Licence Expire</p>
-                       <select name="check_valid" class="form-control" id="check_valid">
+                        <p style="font-size: 12px;">Search by Licence Expire</p>
+                       <select name="check_valid" class="form-control" id="check_valid" style="font-size: 13px;">
                         
                            <option value="">All</option>
                            <option value="1" {{ ($check_valid=='1')?'selected':'' }} >သက်တမ်းရှိလိုင်စင်</option>
@@ -47,7 +47,8 @@
                     </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="margin-top: 20px;">
+
                     <a class="btn btn-success unicode" href="{{route('clinic.create')}}"><i class="fa fa-plus-square" /></i> Add New!</a>
                 </div>
             </div>
@@ -59,12 +60,12 @@
             <table class="table table-bordered styled-table">
                 <thead>
                 <tr>
-                    <th>စဉ်</th>
-                    <th>မြို့နယ်များ</th>  
-                     <th>ဆေးခန်းအမည်</th>
-                     <th>ဆေးခန်း တည်နေရာ</th> 
-                     <th>ပိုင်ရှင်အမည်</th>
-                    <th>ဖုန်းနံပါတ်</th>
+                    <th class="unicode">စဉ်</th>
+                    <th class="unicode">မြို့နယ်များ</th>  
+                     <th class="unicode">ဆေးခန်းအမည်</th>
+                     <th class="unicode">ဆေးခန်း တည်နေရာ</th> 
+                     <th class="unicode">ပိုင်ရှင်အမည်</th>
+                    <th class="unicode">ဖုန်းနံပါတ်</th>
                     <!-- <th>ဓါတ်ပုံ</th> -->
                     <!-- <th class="unicode">Action</th> -->
                 </tr>
@@ -88,14 +89,14 @@
                 ?>
 
                 <tr class="table-tr" data-url="{{ route('clinic.show',$clinic->id) }}" @if($days<60 && $days>0) style="color:#f39c13;" @elseif($expireddate<0) style="color:red;"  @endif>
-                    <td>{{++$i}}</td>
+                    <td class="unicode">{{++$i}}</td>
                    
-                    <td>{{$clinic->viewTownship ? $clinic->viewTownship->tsh_name_mm : ''}}</td>
+                    <td class="unicode">{{$clinic->viewTownship ? $clinic->viewTownship->tsh_name_mm : ''}}</td>
                     
-                    <td>{{$clinic->clinic_name}}</td>
-                    <td>{{$clinic->clinic_address}}</td>
-                    <td>{{$clinic->owner}}</td>
-                   <td>{{$clinic->phone}}</td>
+                    <td class="unicode">{{$clinic->clinic_name}}</td>
+                    <td class="unicode">{{$clinic->clinic_address}}</td>
+                    <td class="unicode">{{$clinic->owner}}</td>
+                   <td class="unicode">{{$clinic->phone}}</td>
                    <!-- <td>
                        <img src="{{ asset($clinic->path.$clinic->owner_photo) }}" alt="photo" width="100px">
                    </td> -->

@@ -93,6 +93,11 @@
         p {
             font-size: 13px !important;
         }
+
+        .size {
+            font-family:Pyidaungsu,Yunghkio,'Masterpiece Uni Sans' !important;
+            font-size: 13px;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
 
