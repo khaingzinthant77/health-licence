@@ -356,7 +356,7 @@
 
             padding: 10px;
             text-align: center;
-            background: #5a4080;
+            background: #2a3c66;
             cursor: pointer;
             color: white;
             transition: background 0.5s ease;
@@ -365,7 +365,7 @@
         .tabby-tab label:hover {
             background: white;
             color: #5a4080;
-            border-bottom:1px solid #5a4080;
+            border-bottom:1px solid #2a3c66;
         }
 
         .tabby-content {
