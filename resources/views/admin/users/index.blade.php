@@ -33,7 +33,8 @@
 
 
 
-<table class="table table-bordered">
+<table class="table table-bordered styled-table">
+  <thead>
  <tr>
    <th>No</th>
    <th>Name</th>
@@ -41,6 +42,7 @@
    <th>Roles</th>
    <th width="280px">Action</th>
  </tr>
+ </thead>
  @foreach ($data as $key => $user)
   <tr>
     <td>{{ ++$i }}</td>
@@ -54,11 +56,18 @@
       @endif
     </td>
     <td>
-       <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}">Show</a>
-       <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}">Edit</a>
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+      <!--  <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye" /></i></a>
+       <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit" /></i></a> -->
+        <!-- {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
-        {!! Form::close() !!}
+        {!! Form::close() !!} -->
+        <form action="{{route('users.destroy',$user->id)}}" method="POST" onsubmit="return confirm('Do you really want to delete?');">
+          @csrf
+          @method('DELETE')
+          <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye" /></i></a>
+       <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit" /></i></a>
+           <button type="submit" class="btn btn-sm btn-danger" ><i class="fa fa-fw fa-trash" /></i></button> 
+        </form>
     </td>
   </tr>
  @endforeach
