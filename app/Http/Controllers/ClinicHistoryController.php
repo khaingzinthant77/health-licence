@@ -11,7 +11,7 @@ class ClinicHistoryController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:clinichistory-list', ['only' => ['index']]);
+         // $this->middleware('permission:clinichistory-list', ['only' => ['index']]);
     }
 
     /**

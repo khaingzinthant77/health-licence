@@ -19,11 +19,11 @@ class ClinicController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:clinic-list|clinic-create|clinic-show|clinic-edit|clinic-delete', ['only' => ['index','show','approve',]]);
-         $this->middleware('permission:clinic-create', ['only' => ['create','store','approve']]);
-         $this->middleware('permission:clinic-edit', ['only' => ['edit','update','approve']]);
-         $this->middleware('permission:clinic-delete', ['only' => ['destroy']]);
-         $this->middleware('permission:clinic-show', ['only' => ['show']]);
+         // $this->middleware('permission:clinic-list|clinic-create|clinic-show|clinic-edit|clinic-delete', ['only' => ['index','show','approve',]]);
+         // $this->middleware('permission:clinic-create', ['only' => ['create','store','approve']]);
+         // $this->middleware('permission:clinic-edit', ['only' => ['edit','update','approve']]);
+         // $this->middleware('permission:clinic-delete', ['only' => ['destroy']]);
+         // $this->middleware('permission:clinic-show', ['only' => ['show']]);
     }
 
     /**

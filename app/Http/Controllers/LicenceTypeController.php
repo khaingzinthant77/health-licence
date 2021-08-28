@@ -9,11 +9,11 @@ class LicenceTypeController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:licencetype-list|licencetype-create|licencetype-show|licencetype-edit|licencetype-delete', ['only' => ['index','show','approve',]]);
-         $this->middleware('permission:licencetype-create', ['only' => ['create','store','approve']]);
-         $this->middleware('permission:licencetype-edit', ['only' => ['edit','update','approve']]);
-         $this->middleware('permission:licencetype-delete', ['only' => ['destroy']]);
-         $this->middleware('permission:licencetype-show', ['only' => ['show']]);
+         // $this->middleware('permission:licencetype-list|licencetype-create|licencetype-show|licencetype-edit|licencetype-delete', ['only' => ['index','show','approve',]]);
+         // $this->middleware('permission:licencetype-create', ['only' => ['create','store','approve']]);
+         // $this->middleware('permission:licencetype-edit', ['only' => ['edit','update','approve']]);
+         // $this->middleware('permission:licencetype-delete', ['only' => ['destroy']]);
+         // $this->middleware('permission:licencetype-show', ['only' => ['show']]);
     }
     
     /**
